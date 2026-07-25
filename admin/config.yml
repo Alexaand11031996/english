@@ -57,7 +57,7 @@ collections:
             name: hero
             widget: object
             fields:
-              - { label: "Фото Аліни", name: photo, widget: image, required: false }
+              - { label: "Фото Аліни", name: photo, widget: image, required: false, hint: "Головне фото зверху сайту. Якщо не завантажити — покажеться текст-плейсхолдер нижче." }
               - { label: "Плейсхолдер (якщо фото не завантажено)", name: photoPlaceholder, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Ярлик над заголовком", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - label: "Заголовок (H1)"
@@ -70,14 +70,16 @@ collections:
               - { label: "Кнопка (основна)", name: btnPrimary, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Кнопка (Telegram)", name: btnOutline, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Рядок довіри (4.9/5 ...)", name: proof, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
-              - label: "Статистика (плашки)"
+              - label: "Статистика (4 плашки під кнопками — «12+ років», «500+ учнів» і т.д.)"
                 name: stats
+                hint: "Можна додавати/видаляти плашки — скільки тут пунктів, стільки й покажеться на сайті."
                 widget: list
                 fields:
-                  - { label: "Число", name: num, widget: string }
+                  - { label: "Число (коротко, напр. 12+ або Oxford)", name: num, widget: string }
                   - { label: "Підпис", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
-              - label: "Плаваючі бейджі (рівно 2)"
+              - label: "Плаваючі бейджі на фото (рівно 2 — верхній і нижній кружечок)"
                 name: badges
+                hint: "Це два кольорові кружечки, що «плавають» поверх фото Аліни (95% і 500+ на макеті). Має бути рівно 2 пункти."
                 widget: list
                 min: 2
                 max: 2
@@ -94,10 +96,12 @@ collections:
               - { label: "Примітка внизу", name: note, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - label: "Картки напрямків"
                 name: cards
+                hint: "Кожна картка — один напрямок навчання (розмовна англійська, IELTS і т.д.). Можна додавати/видаляти/міняти місцями."
                 widget: list
                 fields:
                   - label: "Іконка"
                     name: icon
+                    hint: "Маленька іконка у квадратику зверху картки"
                     widget: select
                     options:
                       - { label: "Мовна бульбашка", value: bubble }
@@ -109,12 +113,13 @@ collections:
                   - { label: "Назва", name: t, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Опис", name: d, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
 
-          - label: "Смуга довіри (4 пункти)"
+          - label: "Смуга довіри (вузька темна смужка одразу під «Чого я навчаю» — «12+ років досвіду», «Сертифікат Oxford» тощо)"
             name: trust
             widget: object
             fields:
               - label: "Пункти"
                 name: items
+                hint: "Короткі пункти з галочкою в один рядок. Зазвичай 3-4 штуки."
                 widget: list
                 field: { label: "Пункт", name: item, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
 
@@ -122,7 +127,7 @@ collections:
             name: about
             widget: object
             fields:
-              - { label: "Фото Аліни", name: photo, widget: image, required: false }
+              - { label: "Фото Аліни", name: photo, widget: image, required: false, hint: "Фото в блоці «Про мене». Якщо не завантажити — покажеться текст-плейсхолдер нижче." }
               - { label: "Плейсхолдер (якщо фото не завантажено)", name: photoPlaceholder, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Число на бейджі", name: badgeNum, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Підпис на бейджі", name: badgeLbl, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -132,6 +137,7 @@ collections:
               - { label: "Абзац 2", name: p2, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
               - label: "Список переваг (чекліст)"
                 name: checklist
+                hint: "Короткі пункти з галочкою під текстом (зазвичай 3-4)."
                 widget: list
                 field: { label: "Пункт", name: item, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Кнопка", name: btn, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -147,13 +153,14 @@ collections:
               - { label: "Текст кнопки на картках", name: btnLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - label: "Тарифні картки"
                 name: cards
+                hint: "Зазвичай 3 картки: пробний урок, разове заняття, пакет. Позначте одну як «Виділена», щоб вона виділялась по центру."
                 widget: list
                 fields:
                   - { label: "Позначка (бейдж)", name: tag, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Назва", name: title, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Ціна", name: price, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Приписка до ціни (напр. / 60 хв)", name: priceSuffix, widget: object, required: false, fields: [{ label: UA, name: ua, widget: string, required: false }, { label: EN, name: en, widget: string, required: false }] }
-                  - { label: "Виділена картка (по центру)", name: featured, widget: boolean, default: false }
+                  - { label: "Виділена картка (по центру)", name: featured, widget: boolean, default: false, hint: "Робить картку темною, більшою і по центру — використовуйте лише для однієї, найпопулярнішої картки." }
                   - label: "Список опцій"
                     name: features
                     widget: list
@@ -168,6 +175,7 @@ collections:
               - { label: "Примітка внизу", name: note, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
               - label: "Кроки"
                 name: steps
+                hint: "Номер кроку (1, 2, 3...) проставляється автоматично за порядком у списку."
                 widget: list
                 fields:
                   - { label: "Назва кроку", name: t, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -181,9 +189,10 @@ collections:
               - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - label: "Відгуки"
                 name: items
+                hint: "Можна додавати/видаляти відгуки — вони прокручуються стрічкою на сайті автоматично."
                 widget: list
                 fields:
-                  - { label: "Ініціал (буква на аватарі)", name: initial, widget: string }
+                  - { label: "Ініціал (буква на аватарі)", name: initial, widget: string, hint: "Одна літера, яка показується в кружечку замість фото учня." }
                   - { label: "Текст відгуку", name: quote, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
                   - { label: "Ім'я, вік", name: name, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Напрямок занять", name: role, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -211,16 +220,18 @@ collections:
                   - { label: "Підпис «Ваш рівень»", name: levelLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - label: "Варіанти рівня"
                     name: levels
+                    hint: "Список у випадаючому меню форми «Ваш рівень»."
                     widget: list
                     fields:
-                      - { label: "Значення (латиницею, без пробілів)", name: value, widget: string }
+                      - { label: "Значення (латиницею, без пробілів)", name: value, widget: string, hint: "Технічний код, на сайті не показується. Просто не повторюйте однакові значення в межах списку." }
                       - { label: "Текст", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Підпис «Мета занять»", name: goalLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - label: "Варіанти мети"
                     name: goals
+                    hint: "Список у випадаючому меню форми «Мета занять»."
                     widget: list
                     fields:
-                      - { label: "Значення (латиницею, без пробілів)", name: value, widget: string }
+                      - { label: "Значення (латиницею, без пробілів)", name: value, widget: string, hint: "Технічний код, на сайті не показується. Просто не повторюйте однакові значення в межах списку." }
                       - { label: "Текст", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Підпис «Зручний час»", name: timeLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Плейсхолдер «Зручний час»", name: timePh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -229,7 +240,7 @@ collections:
                   - { label: "Текст кнопки «Надіслати»", name: submit, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Текст кнопки під час відправки", name: sending, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Примітка під кнопкою", name: note, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
-                  - { label: "Текст згоди (можна залишити посилання на політику)", name: consent, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Текст згоди", name: consent, widget: object, hint: "Не видаляйте частину з <a href=...>...</a> — це клікабельне посилання на політику конфіденційності.", fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
 
           - label: "Секція «Часті запитання»"
             name: faq
@@ -252,8 +263,9 @@ collections:
               - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Опис", name: p, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
 
-          - label: "Підвал сайту"
+          - label: "Підвал сайту (низ сторінки)"
             name: footer
+            hint: "Тут лише опис і заголовки колонок. Самі посилання навігації редагуються в «Навігація» вгорі, а Telegram/Instagram/телефон/email — у «Контакти сайту» вгорі."
             widget: object
             fields:
               - { label: "Опис", name: desc, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
@@ -266,5 +278,5 @@ collections:
             name: seo
             widget: object
             fields:
-              - { label: "Зображення для соцмереж (og:image)", name: ogImage, widget: image, required: false }
-              - { label: "Зображення для Twitter", name: twitterImage, widget: image, required: false }
+              - { label: "Зображення для соцмереж (og:image)", name: ogImage, widget: image, required: false, hint: "Залиште порожнім — автоматично використається фото Аліни з блоку Hero." }
+              - { label: "Зображення для Twitter", name: twitterImage, widget: image, required: false, hint: "Залиште порожнім — автоматично використається те саме фото, що й вище." }

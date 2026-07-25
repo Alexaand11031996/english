@@ -20,7 +20,10 @@
       var heroPhoto = this.props.getAsset(g(entry, ["hero", "photo"], ""));
       var aboutPhoto = this.props.getAsset(g(entry, ["about", "photo"], ""));
 
+      var heroStats = g(entry, ["hero", "stats"], []);
       var teachCards = g(entry, ["teach", "cards"], []);
+      var trustItems = g(entry, ["trust", "items"], []);
+      var checklistItems = g(entry, ["about", "checklist"], []);
       var priceCards = g(entry, ["pricing", "cards"], []);
       var processSteps = g(entry, ["process", "steps"], []);
       var testimonialItems = g(entry, ["testimonials", "items"], []);
@@ -37,7 +40,19 @@
           h("div", { style: { color: "#E8622C", fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" } }, t(bi(entry, ["hero", "eyebrow"]), lang)),
           h("h1", { style: { fontFamily: "Georgia, serif", fontSize: "32px", margin: "0 0 14px" } }, renderAccentHtml ? h("span", { dangerouslySetInnerHTML: { __html: renderAccentHtml(t(bi(entry, ["hero", "h1"]), lang)) } }) : t(bi(entry, ["hero", "h1"]), lang)),
           h("p", { style: { color: "#9FB6A4", maxWidth: "480px", marginBottom: "16px" } }, t(bi(entry, ["hero", "lead"]), lang)),
-          heroPhoto ? h("img", { src: heroPhoto, style: { maxWidth: "220px", borderRadius: "16px", marginTop: "10px" } }) : null
+          heroPhoto ? h("img", { src: heroPhoto, style: { maxWidth: "220px", borderRadius: "16px", marginTop: "10px", marginBottom: "16px" } }) : null,
+          h(
+            "div",
+            { style: { display: "flex", flexWrap: "wrap", gap: "10px" } },
+            heroStats.map(function (stat, i) {
+              return h(
+                "div",
+                { key: i, style: { background: "rgba(244,241,232,0.06)", border: "1px solid rgba(244,241,232,0.12)", borderRadius: "10px", padding: "8px 12px", minWidth: "90px" } },
+                h("div", { style: { fontFamily: "Georgia, serif", color: "#C9E4B8", fontSize: "16px" } }, stat.num),
+                h("div", { style: { fontSize: "10px", color: "#9FB6A4" } }, t(stat.label, lang))
+              );
+            })
+          )
         ),
 
         h(
@@ -60,12 +75,27 @@
 
         h(
           "section",
+          { style: { background: "#1A2E20", padding: "18px 32px", display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center" } },
+          trustItems.map(function (item, i) {
+            return h("div", { key: i, style: { color: "#C9E4B8", fontSize: "12.5px" } }, "✓ " + t(item, lang));
+          })
+        ),
+
+        h(
+          "section",
           { style: { padding: "32px" } },
           h("div", { style: { color: "#E8622C", fontSize: "12px", fontWeight: 700, textTransform: "uppercase", marginBottom: "10px" } }, t(bi(entry, ["about", "eyebrow"]), lang)),
           h("h2", { style: { fontFamily: "Georgia, serif", fontSize: "24px", marginBottom: "10px" } }, t(bi(entry, ["about", "h2"]), lang)),
           aboutPhoto ? h("img", { src: aboutPhoto, style: { maxWidth: "180px", borderRadius: "14px", marginBottom: "12px" } }) : null,
           h("p", { style: { color: "#4F5F53", fontSize: "14px", marginBottom: "8px" } }, t(bi(entry, ["about", "p1"]), lang)),
-          h("p", { style: { color: "#4F5F53", fontSize: "14px" } }, t(bi(entry, ["about", "p2"]), lang))
+          h("p", { style: { color: "#4F5F53", fontSize: "14px", marginBottom: "10px" } }, t(bi(entry, ["about", "p2"]), lang)),
+          h(
+            "ul",
+            { style: { listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" } },
+            checklistItems.map(function (item, i) {
+              return h("li", { key: i, style: { fontSize: "13px", color: "#152219" } }, "✓ " + t(item, lang));
+            })
+          )
         ),
 
         h(
@@ -156,8 +186,17 @@
 
         h(
           "section",
+          { style: { background: "#122016", color: "#F4F1E8", padding: "36px 32px", textAlign: "center" } },
+          h("h2", { style: { fontFamily: "Georgia, serif", fontSize: "22px", marginBottom: "8px" } }, t(bi(entry, ["cta", "h2"]), lang)),
+          h("p", { style: { color: "#9FB6A4", fontSize: "13px" } }, t(bi(entry, ["cta", "p"]), lang))
+        ),
+
+        h(
+          "section",
           { style: { background: "#1A2E20", color: "#9FB6A4", padding: "24px 32px", fontSize: "12px" } },
-          "Telegram: @" + g(entry, ["contacts", "telegramUsername"], "") + " · Instagram: @" + g(entry, ["contacts", "instagramUsername"], "") + " · " + g(entry, ["contacts", "phone"], "") + " · " + g(entry, ["contacts", "email"], "")
+          h("div", { style: { marginBottom: "8px" } }, t(bi(entry, ["footer", "desc"]), lang)),
+          "Telegram: @" + g(entry, ["contacts", "telegramUsername"], "") + " · Instagram: @" + g(entry, ["contacts", "instagramUsername"], "") + " · " + g(entry, ["contacts", "phone"], "") + " · " + g(entry, ["contacts", "email"], ""),
+          h("div", { style: { marginTop: "8px", opacity: 0.7 } }, t(bi(entry, ["footer", "copy"]), lang))
         )
       );
     }
