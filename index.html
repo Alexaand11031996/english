@@ -93,7 +93,7 @@
   .nav-links{display:flex;align-items:center;gap:30px;}
   .nav-links a{color:var(--text-muted-light);font-size:14px;font-weight:500;transition:color .15s;}
   .nav-links a:hover{color:var(--mint);}
-  .nav-menu-extra{display:none;}
+  .nav-links-cta{display:none;}
   .nav-controls{display:flex;align-items:center;gap:12px;flex-shrink:0;}
   .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:30px;height:30px;background:none;border:none;cursor:pointer;flex-shrink:0;padding:0;}
   .nav-burger span{display:block;width:100%;height:2px;background:var(--text-light);border-radius:2px;transition:transform .2s ease, opacity .2s ease;}
@@ -346,13 +346,8 @@
     }
     .nav-links.open{display:flex;}
     .nav-links a{font-size:15px;padding:10px 0;}
-    .nav-menu-extra{
-      display:block;
-      color:var(--orange)!important;
-      margin-top:4px;
-      padding-top:14px!important;
-      border-top:1px solid var(--border-dark);
-    }
+    .nav-links-cta{display:flex;margin-top:10px;}
+    .nav-controls-cta{display:none;}
   }
   @media (max-width:620px){
     .teach-grid,.price-grid,.process-grid,.checklist{grid-template-columns:1fr;}
@@ -381,14 +376,19 @@
       <a href="#formats" data-i18n="nav.formats">Формати</a>
       <a href="#testimonials" data-i18n="nav.testimonials">Відгуки</a>
       <a href="#faq" data-i18n="nav.faq">Питання</a>
-      <a href="https://instagram.com/alina.english" id="navMenuInstagram" class="nav-menu-extra" target="_blank" rel="noopener">Instagram →</a>
+      <a href="#booking" class="btn btn-mint btn-sm nav-links-cta">
+        <span class="btn-stack">
+          <span class="btn-stack-item lang-visible" id="navCtaUaMobile">Записатися</span>
+          <span class="btn-stack-item" id="navCtaEnMobile" aria-hidden="true">Book now</span>
+        </span>
+      </a>
     </div>
     <div class="nav-controls">
       <div class="lang-switch">
         <button type="button" class="lang-btn active" data-lang="ua">UA</button>
         <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <a href="#booking" class="btn btn-mint btn-sm">
+      <a href="#booking" class="btn btn-mint btn-sm nav-controls-cta">
         <span class="btn-stack">
           <span class="btn-stack-item lang-visible" id="navCtaUa">Записатися</span>
           <span class="btn-stack-item" id="navCtaEn" aria-hidden="true">Book now</span>

@@ -69,10 +69,14 @@ function applyStaticFields(lang) {
   document.getElementById('siteName').textContent = siteContent.site.name;
   document.getElementById('footerSiteName').textContent = siteContent.site.name;
 
-  document.getElementById('navCtaUa').textContent = t(siteContent.nav.cta, 'ua');
-  document.getElementById('navCtaEn').textContent = t(siteContent.nav.cta, 'en');
-  document.getElementById('navCtaUa').classList.toggle('lang-visible', lang === 'ua');
-  document.getElementById('navCtaEn').classList.toggle('lang-visible', lang === 'en');
+  ['navCtaUa', 'navCtaUaMobile'].forEach(function (id) {
+    document.getElementById(id).textContent = t(siteContent.nav.cta, 'ua');
+    document.getElementById(id).classList.toggle('lang-visible', lang === 'ua');
+  });
+  ['navCtaEn', 'navCtaEnMobile'].forEach(function (id) {
+    document.getElementById(id).textContent = t(siteContent.nav.cta, 'en');
+    document.getElementById(id).classList.toggle('lang-visible', lang === 'en');
+  });
   document.getElementById('pageTitle').textContent = t(siteContent.seo.title, lang);
   document.getElementById('pageDesc').setAttribute('content', t(siteContent.seo.description, lang));
   document.getElementById('ogTitle').setAttribute('content', t(siteContent.seo.title, lang));
@@ -97,7 +101,6 @@ function applyContacts() {
     if (el) el.setAttribute('href', tgUrl);
   });
   document.getElementById('contactInstagram').setAttribute('href', igUrl);
-  document.getElementById('navMenuInstagram').setAttribute('href', igUrl);
   document.getElementById('contactPhone').setAttribute('href', telUrl);
   document.getElementById('contactEmail').setAttribute('href', mailUrl);
   document.getElementById('footerInstagram').setAttribute('href', igUrl);

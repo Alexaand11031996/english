@@ -262,7 +262,6 @@ async function build() {
     html = setAttr(html, id, "href", escapeHtml(tgUrl));
   });
   html = setAttr(html, "contactInstagram", "href", escapeHtml(igUrl));
-  html = setAttr(html, "navMenuInstagram", "href", escapeHtml(igUrl));
   html = setAttr(html, "contactPhone", "href", escapeHtml(telUrl));
   html = setAttr(html, "contactEmail", "href", escapeHtml(mailUrl));
   html = setAttr(html, "footerInstagram", "href", escapeHtml(igUrl));
@@ -281,6 +280,8 @@ async function build() {
   html = setInner(html, "siteName", "span", escapeHtml(content.site.name));
   html = setInner(html, "navCtaUa", "span", escapeHtml(t(content.nav.cta, "ua")));
   html = setInner(html, "navCtaEn", "span", escapeHtml(t(content.nav.cta, "en")));
+  html = setInner(html, "navCtaUaMobile", "span", escapeHtml(t(content.nav.cta, "ua")));
+  html = setInner(html, "navCtaEnMobile", "span", escapeHtml(t(content.nav.cta, "en")));
   html = setInner(html, "footerSiteName", "span", escapeHtml(content.site.name));
 
   const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY || "";
