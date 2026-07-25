@@ -278,6 +278,8 @@ async function build() {
   html = setInner(html, "footerEmail", "a", escapeHtml(c.email));
 
   html = setInner(html, "siteName", "span", escapeHtml(content.site.name));
+  html = setInner(html, "navCtaUa", "span", escapeHtml(t(content.nav.cta, "ua")));
+  html = setInner(html, "navCtaEn", "span", escapeHtml(t(content.nav.cta, "en")));
   html = setInner(html, "footerSiteName", "span", escapeHtml(content.site.name));
 
   const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY || "";

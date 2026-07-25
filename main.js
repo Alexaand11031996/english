@@ -68,6 +68,11 @@ function applyStaticFields(lang) {
 
   document.getElementById('siteName').textContent = siteContent.site.name;
   document.getElementById('footerSiteName').textContent = siteContent.site.name;
+
+  document.getElementById('navCtaUa').textContent = t(siteContent.nav.cta, 'ua');
+  document.getElementById('navCtaEn').textContent = t(siteContent.nav.cta, 'en');
+  document.getElementById('navCtaUa').classList.toggle('lang-visible', lang === 'ua');
+  document.getElementById('navCtaEn').classList.toggle('lang-visible', lang === 'en');
   document.getElementById('pageTitle').textContent = t(siteContent.seo.title, lang);
   document.getElementById('pageDesc').setAttribute('content', t(siteContent.seo.description, lang));
   document.getElementById('ogTitle').setAttribute('content', t(siteContent.seo.title, lang));

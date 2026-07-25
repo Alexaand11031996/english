@@ -93,6 +93,9 @@
   .nav-links a{color:var(--text-muted-light);font-size:14px;font-weight:500;transition:color .15s;}
   .nav-links a:hover{color:var(--mint);}
   .nav-cta{display:flex;align-items:center;gap:14px;}
+  .btn-stack{display:grid;}
+  .btn-stack .btn-stack-item{grid-area:1/1;visibility:hidden;white-space:nowrap;}
+  .btn-stack .btn-stack-item.lang-visible{visibility:visible;}
   .lang-switch{display:flex;border:1px solid rgba(244,241,232,0.18);border-radius:999px;padding:3px;gap:2px;}
   .lang-btn{background:none;border:none;color:var(--text-muted-light);font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:inherit;transition:background .15s,color .15s;}
   .lang-btn.active{background:var(--mint);color:var(--text-dark);}
@@ -348,7 +351,12 @@
         <button type="button" class="lang-btn active" data-lang="ua">UA</button>
         <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <a href="#booking" class="btn btn-mint btn-sm" data-i18n="nav.cta">Записатися на урок</a>
+      <a href="#booking" class="btn btn-mint btn-sm">
+        <span class="btn-stack">
+          <span class="btn-stack-item lang-visible" id="navCtaUa">Записатися на урок</span>
+          <span class="btn-stack-item" id="navCtaEn" aria-hidden="true">Book a lesson</span>
+        </span>
+      </a>
     </div>
   </nav>
 </header>
