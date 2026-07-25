@@ -284,7 +284,7 @@ async function build() {
   html = setInner(html, "navCtaEnMobile", "span", escapeHtml(t(content.nav.cta, "en")));
   html = setInner(html, "footerSiteName", "span", escapeHtml(content.site.name));
 
-  const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY || "";
+  const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY || "0x4AAAAAAD9ty48dZKWewlUZ";
   if (turnstileSiteKey) {
     html = setAttr(html, "turnstileWidget", "data-sitekey", escapeHtml(turnstileSiteKey));
     html = html.replace(/<!--TURNSTILE_SCRIPT_START-->|<!--TURNSTILE_SCRIPT_END-->|<!--TURNSTILE_WIDGET_START-->|<!--TURNSTILE_WIDGET_END-->/g, "");
