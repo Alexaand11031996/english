@@ -64,15 +64,30 @@ function renderProcessStep(step, index, lang) {
   );
 }
 
+function renderAvatarInner(photo, initial) {
+  if (photo) {
+    return '<img src="' + escapeHtml(photo) + '" alt="">';
+  }
+  return escapeHtml(initial || "");
+}
+
 function renderTestimonialCard(item, lang, ariaHidden) {
   return (
     '<div class="test-card"' + (ariaHidden ? ' aria-hidden="true"' : '') + '>' +
       '<div class="stars">★★★★★</div>' +
       '<p class="quote">' + escapeHtml(t(item.quote, lang)) + '</p>' +
-      '<div class="test-author"><div class="test-avatar">' + escapeHtml(item.initial || "") + '</div>' +
+      '<div class="test-author"><div class="test-avatar">' + renderAvatarInner(item.photo, item.initial) + '</div>' +
       '<div><div class="name">' + escapeHtml(t(item.name, lang)) + '</div><div class="role">' + escapeHtml(t(item.role, lang)) + '</div></div></div>' +
     '</div>'
   );
+}
+
+function renderAvatarStackItem(item) {
+  return '<span>' + renderAvatarInner(item.photo, item.initial) + '</span>';
+}
+
+function renderAvatarStack(items) {
+  return items.map(renderAvatarStackItem).join("");
 }
 
 function renderTestimonialsTrack(items, lang) {
@@ -129,6 +144,8 @@ if (typeof module !== "undefined" && module.exports) {
     renderTrustItem: renderTrustItem,
     renderChecklistItem: renderChecklistItem,
     renderHeroStat: renderHeroStat,
-    renderSelectOptions: renderSelectOptions
+    renderSelectOptions: renderSelectOptions,
+    renderAvatarInner: renderAvatarInner,
+    renderAvatarStack: renderAvatarStack
   };
 }

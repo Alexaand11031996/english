@@ -49,6 +49,7 @@
       var aboutPhoto = this.props.getAsset(g(entry, ["about", "photo"], ""));
 
       var heroStats = g(entry, ["hero", "stats"], []);
+      var heroAvatars = g(entry, ["hero", "avatars"], []);
       var teachCards = g(entry, ["teach", "cards"], []);
       var trustItems = g(entry, ["trust", "items"], []);
       var checklistItems = g(entry, ["about", "checklist"], []);
@@ -75,6 +76,28 @@
             h("div", { style: { background: "transparent", color: "#F4F1E8", border: "1.5px solid rgba(244,241,232,0.35)", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnOutline"]), lang))
           ),
           photoBox(heroPhoto, t(bi(entry, ["hero", "photoPlaceholder"]), lang), { width: "220px", height: "260px", marginBottom: "16px" }),
+          h(
+            "div",
+            { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" } },
+            heroAvatars.map(function (avatar, i) {
+              var avatarUrl = this.props.getAsset(g(entry, ["hero", "avatars", i, "photo"], ""));
+              return h(
+                "div",
+                {
+                  key: i,
+                  style: {
+                    width: "26px", height: "26px", borderRadius: "50%",
+                    background: "#E4F1DA", color: "#152219",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: "10px", fontWeight: 700, overflow: "hidden",
+                    marginLeft: i === 0 ? 0 : "-8px", border: "2px solid #122016"
+                  }
+                },
+                avatarUrl ? h("img", { src: avatarUrl, style: { width: "100%", height: "100%", objectFit: "cover" } }) : (avatar.initial || "")
+              );
+            }.bind(this)),
+            h("span", { style: { fontSize: "12px", color: "#9FB6A4", marginLeft: "6px" } }, t(bi(entry, ["hero", "proof"]), lang))
+          ),
           h(
             "div",
             { style: { display: "flex", flexWrap: "wrap", gap: "10px" } },
@@ -190,14 +213,26 @@
             "div",
             { style: { display: "flex", gap: "12px", overflowX: "auto" } },
             testimonialItems.map(function (item, i) {
+              var avatarUrl = this.props.getAsset(g(entry, ["testimonials", "items", i, "photo"], ""));
               return h(
                 "div",
                 { key: i, style: { flex: "0 0 220px", background: "#fff", border: "1px solid #E3DCC9", borderRadius: "14px", padding: "14px" } },
                 h("p", { style: { fontSize: "12px", marginBottom: "8px" } }, t(item.quote, lang)),
-                h("div", { style: { fontSize: "12px", fontWeight: 700 } }, t(item.name, lang)),
-                h("div", { style: { fontSize: "11px", color: "#4F5F53" } }, t(item.role, lang))
+                h(
+                  "div",
+                  { style: { display: "flex", alignItems: "center", gap: "8px" } },
+                  avatarUrl
+                    ? h("img", { src: avatarUrl, style: { width: "28px", height: "28px", borderRadius: "50%", objectFit: "cover" } })
+                    : h("div", { style: { width: "28px", height: "28px", borderRadius: "50%", background: "#E4F1DA", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700 } }, item.initial || ""),
+                  h(
+                    "div",
+                    {},
+                    h("div", { style: { fontSize: "12px", fontWeight: 700 } }, t(item.name, lang)),
+                    h("div", { style: { fontSize: "11px", color: "#4F5F53" } }, t(item.role, lang))
+                  )
+                )
               );
-            })
+            }.bind(this))
           )
         ),
 

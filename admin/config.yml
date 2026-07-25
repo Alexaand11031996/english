@@ -92,6 +92,13 @@ collections:
               - { label: "Кнопка (основна)", name: btnPrimary, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Кнопка (Telegram)", name: btnOutline, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Рядок довіри (4.9/5 ...)", name: proof, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Маленькі аватарки біля рейтингу (гурток осіб зліва від зірочок)"
+                name: avatars
+                hint: "Можна додавати/видаляти. Якщо фото не завантажено — показується кружечок з ініціалом."
+                widget: list
+                fields:
+                  - { label: "Ініціал (якщо без фото)", name: initial, widget: string, required: false }
+                  - { label: "Маленьке фото (необов'язково)", name: photo, widget: image, required: false }
               - label: "Статистика (4 плашки під кнопками — «12+ років», «500+ учнів» і т.д.)"
                 name: stats
                 hint: "Можна додавати/видаляти плашки — скільки тут пунктів, стільки й покажеться на сайті."
@@ -214,7 +221,8 @@ collections:
                 hint: "Можна додавати/видаляти відгуки — вони прокручуються стрічкою на сайті автоматично."
                 widget: list
                 fields:
-                  - { label: "Ініціал (буква на аватарі)", name: initial, widget: string, hint: "Одна літера, яка показується в кружечку замість фото учня." }
+                  - { label: "Ініціал (буква на аватарі, якщо без фото)", name: initial, widget: string, required: false, hint: "Одна літера, яка показується в кружечку, поки не завантажено фото." }
+                  - { label: "Маленьке фото учня (необов'язково)", name: photo, widget: image, required: false, hint: "Якщо завантажити — покаже фото замість кружечка з ініціалом." }
                   - { label: "Текст відгуку", name: quote, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
                   - { label: "Ім'я, вік", name: name, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Напрямок занять", name: role, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -295,4 +303,5 @@ collections:
               - { label: "Заголовок «Навігація»", name: navTitle, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Заголовок «Контакти»", name: contactsTitle, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Копірайт", name: copy, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Текст посилання на політику конфіденційності", name: privacyLink, widget: object, hint: "Веде на /privacy.html.", fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Підпис", name: tag, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }

@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const { DEFAULT_CONTENT, deepMerge } = require("./content.default.js");
 const {
@@ -14,7 +15,8 @@ const {
   renderTrustItem,
   renderChecklistItem,
   renderHeroStat,
-  renderSelectOptions
+  renderSelectOptions,
+  renderAvatarStack
 } = require("./templates.js");
 
 const ROOT = __dirname;
@@ -46,7 +48,7 @@ function readJsonSafe(file, fallback) {
   }
 }
 
-async function processImage(sharp, heicConvert, srcRelPath) {
+async function processImage(sharp, heicConvert, srcRelPath, maxWidth) {
   if (!srcRelPath) return "";
   if (/^https?:\/\//i.test(srcRelPath)) return srcRelPath;
 
@@ -57,9 +59,10 @@ async function processImage(sharp, heicConvert, srcRelPath) {
   }
 
   const baseName = path.basename(srcPath, path.extname(srcPath));
+  const hash = crypto.createHash("md5").update(srcRelPath).digest("hex").slice(0, 8);
   const outDir = path.join(DIST, "images");
   fs.mkdirSync(outDir, { recursive: true });
-  const outRelPath = "images/" + baseName + ".jpg";
+  const outRelPath = "images/" + baseName + "-" + hash + ".jpg";
   const outPath = path.join(DIST, outRelPath);
 
   try {
@@ -72,7 +75,7 @@ async function processImage(sharp, heicConvert, srcRelPath) {
 
     await sharp(inputBuffer)
       .rotate()
-      .resize({ width: 1600, withoutEnlargement: true })
+      .resize({ width: maxWidth || 1600, withoutEnlargement: true })
       .flatten({ background: "#ffffff" })
       .jpeg({ quality: 82 })
       .toFile(outPath);
@@ -81,12 +84,24 @@ async function processImage(sharp, heicConvert, srcRelPath) {
   } catch (e) {
     console.warn("[build.js] warning: failed to process image " + srcRelPath + " (" + e.message + "), falling back to the original file");
     try {
-      const fallbackRelPath = "images/" + baseName + path.extname(srcPath);
+      const fallbackRelPath = "images/" + baseName + "-" + hash + path.extname(srcPath);
       fs.copyFileSync(srcPath, path.join(DIST, fallbackRelPath));
       return fallbackRelPath;
     } catch (copyErr) {
       console.warn("[build.js] warning: fallback copy also failed for " + srcRelPath + ", omitting the image");
       return "";
+    }
+  }
+}
+
+async function processImageList(sharp, heicConvert, items, maxWidth) {
+  for (const item of items) {
+    if (!item.photo) continue;
+    try {
+      item.photo = await processImage(sharp, heicConvert, item.photo, maxWidth);
+    } catch (e) {
+      console.warn("[build.js] warning: unexpected error processing photo (" + e.message + "), omitting the image");
+      item.photo = "";
     }
   }
 }
@@ -208,6 +223,8 @@ async function build() {
         content.about.photo = "";
       }
     }
+    await processImageList(sharp, heicConvert, content.hero.avatars, 300);
+    await processImageList(sharp, heicConvert, content.testimonials.items, 300);
   }
 
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
@@ -239,6 +256,7 @@ async function build() {
   html = setInner(html, "heroBadge2Lbl", "div", escapeHtml(t(content.hero.badges[1].label, LANG)));
 
   html = setInner(html, "heroStats", "div", content.hero.stats.map(function (s) { return renderHeroStat(s, LANG); }).join(""));
+  html = setInner(html, "heroAvatarStack", "div", renderAvatarStack(content.hero.avatars));
   html = setInner(html, "teachGrid", "div", content.teach.cards.map(function (c) { return renderTeachCard(c, LANG); }).join(""));
   html = setInner(html, "trustItems", "div", content.trust.items.map(function (i) { return renderTrustItem(i, LANG); }).join(""));
   html = setInner(html, "aboutChecklist", "ul", content.about.checklist.map(function (i) { return renderChecklistItem(i, LANG); }).join(""));

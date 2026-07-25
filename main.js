@@ -24,6 +24,7 @@ function renderLists(lang) {
   document.getElementById('testTrack').innerHTML = renderTestimonialsTrack(siteContent.testimonials.items, lang);
   document.getElementById('faqList').innerHTML = siteContent.faq.items.map(function (i) { return renderFaqItem(i, lang); }).join('');
   document.getElementById('heroStats').innerHTML = siteContent.hero.stats.map(function (s) { return renderHeroStat(s, lang); }).join('');
+  document.getElementById('heroAvatarStack').innerHTML = renderAvatarStack(siteContent.hero.avatars);
 
   var levelSelect = document.getElementById('level');
   var prevLevel = levelSelect.value;

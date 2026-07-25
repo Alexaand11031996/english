@@ -49,6 +49,11 @@ var DEFAULT_CONTENT = {
     btnPrimary: { ua: "Записатися на урок ↗", en: "Book a lesson ↗" },
     btnOutline: { ua: "Написати в Telegram", en: "Message on Telegram" },
     proof: { ua: "4.9/5 від 500+ учнів", en: "4.9/5 from 500+ students" },
+    avatars: [
+      { initial: "А", photo: "" },
+      { initial: "Д", photo: "" },
+      { initial: "М", photo: "" }
+    ],
     photo: "",
     photoPlaceholder: { ua: "[ Фото Аліни — портрет, великим планом ]", en: "[ Alina's photo — close-up portrait ]" },
     stats: [
@@ -164,13 +169,13 @@ var DEFAULT_CONTENT = {
     eyebrow: { ua: "Відгуки", en: "Reviews" },
     h2: { ua: "Що кажуть учні", en: "What students say" },
     items: [
-      { initial: "А", quote: { ua: "«За півроку занять я перестала боятися говорити і склала IELTS на потрібний бал з першого разу.»", en: "\"After six months of lessons I stopped being afraid to speak and passed IELTS with the score I needed on the first try.\"" }, name: { ua: "Ганна, 27 років", en: "Hanna, 27" }, role: { ua: "Підготовка до IELTS", en: "IELTS Preparation" } },
-      { initial: "Д", quote: { ua: "«Займаюся діловою англійською для роботи — вже спокійно веду переговори з іноземними партнерами.»", en: "\"I'm doing business English for work — I now negotiate calmly with international partners.\"" }, name: { ua: "Дмитро, 34 роки", en: "Dmytro, 34" }, role: { ua: "Ділова англійська", en: "Business English" } },
-      { initial: "М", quote: { ua: "«Син займається вже рік, підтягнув мову в школі і став впевненішим на уроках.»", en: "\"My son has been studying for a year, improved at school and became more confident in class.\"" }, name: { ua: "Марія, мама учня", en: "Maria, parent" }, role: { ua: "Англійська для підлітків", en: "English for Teens" } },
-      { initial: "О", quote: { ua: "«Довго боялася почати вчити мову з нуля, але вже через кілька місяців почала розуміти фільми без субтитрів.»", en: "\"I was afraid to start from scratch, but after a few months I began understanding movies without subtitles.\"" }, name: { ua: "Олена, 22 роки", en: "Olena, 22" }, role: { ua: "Англійська з нуля", en: "English from Scratch" } },
-      { initial: "І", quote: { ua: "«Готувався до співбесіди англійською — Аліна допомогла відточити відповіді й почуватися впевнено.»", en: "\"I was preparing for an English interview — Alina helped me polish my answers and feel confident.\"" }, name: { ua: "Ігор, 40 років", en: "Ihor, 40" }, role: { ua: "Ділова англійська", en: "Business English" } },
-      { initial: "С", quote: { ua: "«Стала набагато впевненіше почуватися на уроках англійської в школі, а вчителька відзначила прогрес.»", en: "\"I feel much more confident in English class at school now, and my teacher noticed the progress.\"" }, name: { ua: "Софія, 15 років", en: "Sofia, 15" }, role: { ua: "Англійська для підлітків", en: "English for Teens" } },
-      { initial: "П", quote: { ua: "«Просто хотів розмовляти вільніше в подорожах — за кілька місяців зникла скутість, з'явилася легкість у розмові.»", en: "\"I just wanted to speak more freely while travelling — within a few months the stiffness disappeared and conversations felt easy.\"" }, name: { ua: "Павло, 29 років", en: "Pavlo, 29" }, role: { ua: "Розмовна англійська", en: "Conversational English" } }
+      { initial: "А", photo: "", quote: { ua: "«За півроку занять я перестала боятися говорити і склала IELTS на потрібний бал з першого разу.»", en: "\"After six months of lessons I stopped being afraid to speak and passed IELTS with the score I needed on the first try.\"" }, name: { ua: "Ганна, 27 років", en: "Hanna, 27" }, role: { ua: "Підготовка до IELTS", en: "IELTS Preparation" } },
+      { initial: "Д", photo: "", quote: { ua: "«Займаюся діловою англійською для роботи — вже спокійно веду переговори з іноземними партнерами.»", en: "\"I'm doing business English for work — I now negotiate calmly with international partners.\"" }, name: { ua: "Дмитро, 34 роки", en: "Dmytro, 34" }, role: { ua: "Ділова англійська", en: "Business English" } },
+      { initial: "М", photo: "", quote: { ua: "«Син займається вже рік, підтягнув мову в школі і став впевненішим на уроках.»", en: "\"My son has been studying for a year, improved at school and became more confident in class.\"" }, name: { ua: "Марія, мама учня", en: "Maria, parent" }, role: { ua: "Англійська для підлітків", en: "English for Teens" } },
+      { initial: "О", photo: "", quote: { ua: "«Довго боялася почати вчити мову з нуля, але вже через кілька місяців почала розуміти фільми без субтитрів.»", en: "\"I was afraid to start from scratch, but after a few months I began understanding movies without subtitles.\"" }, name: { ua: "Олена, 22 роки", en: "Olena, 22" }, role: { ua: "Англійська з нуля", en: "English from Scratch" } },
+      { initial: "І", photo: "", quote: { ua: "«Готувався до співбесіди англійською — Аліна допомогла відточити відповіді й почуватися впевнено.»", en: "\"I was preparing for an English interview — Alina helped me polish my answers and feel confident.\"" }, name: { ua: "Ігор, 40 років", en: "Ihor, 40" }, role: { ua: "Ділова англійська", en: "Business English" } },
+      { initial: "С", photo: "", quote: { ua: "«Стала набагато впевненіше почуватися на уроках англійської в школі, а вчителька відзначила прогрес.»", en: "\"I feel much more confident in English class at school now, and my teacher noticed the progress.\"" }, name: { ua: "Софія, 15 років", en: "Sofia, 15" }, role: { ua: "Англійська для підлітків", en: "English for Teens" } },
+      { initial: "П", photo: "", quote: { ua: "«Просто хотів розмовляти вільніше в подорожах — за кілька місяців зникла скутість, з'явилася легкість у розмові.»", en: "\"I just wanted to speak more freely while travelling — within a few months the stiffness disappeared and conversations felt easy.\"" }, name: { ua: "Павло, 29 років", en: "Pavlo, 29" }, role: { ua: "Розмовна англійська", en: "Conversational English" } }
     ]
   },
   booking: {
@@ -238,6 +243,7 @@ var DEFAULT_CONTENT = {
     navTitle: { ua: "Навігація", en: "Navigation" },
     contactsTitle: { ua: "Контакти", en: "Contacts" },
     copy: { ua: "© 2026 Alina English. Усі права захищені.", en: "© 2026 Alina English. All rights reserved." },
+    privacyLink: { ua: "Політика конфіденційності", en: "Privacy Policy" },
     tag: { ua: "Зроблено з любов'ю до англійської мови", en: "Made with love for the English language" }
   }
 };

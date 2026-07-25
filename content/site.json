@@ -87,6 +87,20 @@
       "ua": "4.9/5 від 500+ учнів",
       "en": "4.9/5 from 500+ students"
     },
+    "avatars": [
+      {
+        "initial": "А",
+        "photo": ""
+      },
+      {
+        "initial": "Д",
+        "photo": ""
+      },
+      {
+        "initial": "М",
+        "photo": ""
+      }
+    ],
     "photo": "",
     "photoPlaceholder": {
       "ua": "[ Фото Аліни — портрет, великим планом ]",
@@ -489,6 +503,7 @@
     "items": [
       {
         "initial": "А",
+        "photo": "",
         "quote": {
           "ua": "«За півроку занять я перестала боятися говорити і склала IELTS на потрібний бал з першого разу.»",
           "en": "\"After six months of lessons I stopped being afraid to speak and passed IELTS with the score I needed on the first try.\""
@@ -504,6 +519,7 @@
       },
       {
         "initial": "Д",
+        "photo": "",
         "quote": {
           "ua": "«Займаюся діловою англійською для роботи — вже спокійно веду переговори з іноземними партнерами.»",
           "en": "\"I'm doing business English for work — I now negotiate calmly with international partners.\""
@@ -519,6 +535,7 @@
       },
       {
         "initial": "М",
+        "photo": "",
         "quote": {
           "ua": "«Син займається вже рік, підтягнув мову в школі і став впевненішим на уроках.»",
           "en": "\"My son has been studying for a year, improved at school and became more confident in class.\""
@@ -534,6 +551,7 @@
       },
       {
         "initial": "О",
+        "photo": "",
         "quote": {
           "ua": "«Довго боялася почати вчити мову з нуля, але вже через кілька місяців почала розуміти фільми без субтитрів.»",
           "en": "\"I was afraid to start from scratch, but after a few months I began understanding movies without subtitles.\""
@@ -549,6 +567,7 @@
       },
       {
         "initial": "І",
+        "photo": "",
         "quote": {
           "ua": "«Готувався до співбесіди англійською — Аліна допомогла відточити відповіді й почуватися впевнено.»",
           "en": "\"I was preparing for an English interview — Alina helped me polish my answers and feel confident.\""
@@ -564,6 +583,7 @@
       },
       {
         "initial": "С",
+        "photo": "",
         "quote": {
           "ua": "«Стала набагато впевненіше почуватися на уроках англійської в школі, а вчителька відзначила прогрес.»",
           "en": "\"I feel much more confident in English class at school now, and my teacher noticed the progress.\""
@@ -579,6 +599,7 @@
       },
       {
         "initial": "П",
+        "photo": "",
         "quote": {
           "ua": "«Просто хотів розмовляти вільніше в подорожах — за кілька місяців зникла скутість, з'явилася легкість у розмові.»",
           "en": "\"I just wanted to speak more freely while travelling — within a few months the stiffness disappeared and conversations felt easy.\""
@@ -856,6 +877,10 @@
     "copy": {
       "ua": "© 2026 Alina English. Усі права захищені.",
       "en": "© 2026 Alina English. All rights reserved."
+    },
+    "privacyLink": {
+      "ua": "Політика конфіденційності",
+      "en": "Privacy Policy"
     },
     "tag": {
       "ua": "Зроблено з любов'ю до англійської мови",
