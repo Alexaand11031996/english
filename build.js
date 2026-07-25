@@ -241,13 +241,31 @@ async function build() {
   const twitterImage = content.seo.twitterImage || ogImage;
   html = setAttr(html, "twitterImage", "content", escapeHtml(twitterImage));
 
+  const SITE_URL = "https://alina-english.live";
+  const schemaOrg = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: LANG === "en" ? "English language tutoring" : "Репетиторство англійської мови",
+    provider: { "@type": "Person", name: content.site.name },
+    areaServed: "Online",
+    description: t(content.seo.description, LANG),
+    url: SITE_URL
+  };
+  if (ogImage) {
+    schemaOrg.image = /^https?:\/\//i.test(ogImage) ? ogImage : SITE_URL + "/" + ogImage.replace(/^\/+/, "");
+  }
+  const schemaJson = JSON.stringify(schemaOrg).replace(/</g, "\\u003c");
+  html = setInner(html, "schemaOrgData", "script", schemaJson);
+
   html = setInner(html, "heroH1", "h1", renderAccentHtml(t(content.hero.h1, LANG)));
 
   if (content.hero.photo) {
-    html = setInner(html, "heroPhoto", "div", '<img src="' + escapeHtml(content.hero.photo) + '" alt="">');
+    const heroAlt = content.site.name + " — " + t(content.hero.eyebrow, LANG);
+    html = setInner(html, "heroPhoto", "div", '<img src="' + escapeHtml(content.hero.photo) + '" alt="' + escapeHtml(heroAlt) + '">');
   }
   if (content.about.photo) {
-    html = setInner(html, "aboutPhoto", "div", '<img src="' + escapeHtml(content.about.photo) + '" alt="">');
+    const aboutAlt = content.site.name + " — " + t(content.about.eyebrow, LANG);
+    html = setInner(html, "aboutPhoto", "div", '<img src="' + escapeHtml(content.about.photo) + '" alt="' + escapeHtml(aboutAlt) + '">');
   }
 
   html = setInner(html, "heroBadge1Num", "div", escapeHtml(content.hero.badges[0].num));

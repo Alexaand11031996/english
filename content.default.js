@@ -7,10 +7,10 @@ var DEFAULT_CONTENT = {
     email: "your@email.com"
   },
   seo: {
-    title: { ua: "Англійська онлайн з викладачем | Alina English", en: "Online English Lessons with a Teacher | Alina English" },
+    title: { ua: "Репетитор англійської онлайн | Alina English", en: "Online English Tutor | Alina English" },
     description: {
-      ua: "Англійська онлайн з досвідченим викладачем: 12+ років практики, Oxford-сертифікат, 500+ учнів. IELTS, розмовна та ділова англійська — уроки під вашу мету.",
-      en: "Learn English online with an experienced teacher: 12+ years, Oxford certificate, 500+ students. IELTS prep, conversational and business English — lessons tailored to you."
+      ua: "Репетитор англійської онлайн з досвідом 12+ років, сертифікатом Oxford і 500+ учнями. IELTS, розмовна та ділова англійська — індивідуальні уроки під вашу мету.",
+      en: "Online English tutor with 12+ years of experience, an Oxford certificate and 500+ students. IELTS prep, conversational and business English — lessons tailored to you."
     },
     ogImage: "",
     twitterImage: ""

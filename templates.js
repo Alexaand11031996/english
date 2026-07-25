@@ -64,9 +64,9 @@ function renderProcessStep(step, index, lang) {
   );
 }
 
-function renderAvatarInner(photo, initial) {
+function renderAvatarInner(photo, initial, alt) {
   if (photo) {
-    return '<img src="' + escapeHtml(photo) + '" alt="">';
+    return '<img src="' + escapeHtml(photo) + '" alt="' + escapeHtml(alt || "") + '">';
   }
   return escapeHtml(initial || "");
 }
@@ -76,7 +76,7 @@ function renderTestimonialCard(item, lang, ariaHidden) {
     '<div class="test-card"' + (ariaHidden ? ' aria-hidden="true"' : '') + '>' +
       '<div class="stars">★★★★★</div>' +
       '<p class="quote">' + escapeHtml(t(item.quote, lang)) + '</p>' +
-      '<div class="test-author"><div class="test-avatar">' + renderAvatarInner(item.photo, item.initial) + '</div>' +
+      '<div class="test-author"><div class="test-avatar">' + renderAvatarInner(item.photo, item.initial, t(item.name, lang)) + '</div>' +
       '<div><div class="name">' + escapeHtml(t(item.name, lang)) + '</div><div class="role">' + escapeHtml(t(item.role, lang)) + '</div></div></div>' +
     '</div>'
   );

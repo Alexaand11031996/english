@@ -118,12 +118,14 @@ function applyContacts() {
   document.getElementById('footerEmail').textContent = c.email;
 }
 
-function applyPhotos() {
+function applyPhotos(lang) {
   if (siteContent.hero.photo) {
-    document.getElementById('heroPhoto').innerHTML = '<img src="' + escapeHtml(siteContent.hero.photo) + '" alt="">';
+    var heroAlt = siteContent.site.name + ' — ' + t(siteContent.hero.eyebrow, lang);
+    document.getElementById('heroPhoto').innerHTML = '<img src="' + escapeHtml(siteContent.hero.photo) + '" alt="' + escapeHtml(heroAlt) + '">';
   }
   if (siteContent.about.photo) {
-    document.getElementById('aboutPhoto').innerHTML = '<img src="' + escapeHtml(siteContent.about.photo) + '" alt="">';
+    var aboutAlt = siteContent.site.name + ' — ' + t(siteContent.about.eyebrow, lang);
+    document.getElementById('aboutPhoto').innerHTML = '<img src="' + escapeHtml(siteContent.about.photo) + '" alt="' + escapeHtml(aboutAlt) + '">';
   }
 }
 
@@ -131,6 +133,7 @@ function applyLang(lang) {
   currentLang = lang;
   applyStaticFields(lang);
   renderLists(lang);
+  applyPhotos(lang);
 }
 
 function reattachFaqHandlers() {
@@ -172,7 +175,6 @@ document.addEventListener('click', function (e) {
 });
 
 applyContacts();
-applyPhotos();
 applyLang(currentLang);
 
 document.getElementById('bookingForm').addEventListener('submit', function (e) {
