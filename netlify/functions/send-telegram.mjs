@@ -1,15 +1,14 @@
-const { getStore } = require("@netlify/blobs");
+import { getStore } from "@netlify/blobs";
 
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const MIN_INTERVAL_MS = 3 * 60 * 1000;
 
 function json(statusCode, body) {
-  return {
-    statusCode: statusCode,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
-  };
+  return new Response(JSON.stringify(body), {
+    status: statusCode,
+    headers: { "Content-Type": "application/json" }
+  });
 }
 
 async function verifyTurnstile(token, remoteIp) {
@@ -62,14 +61,14 @@ const LABELS = {
   en: { name: "Name", contact: "Contact", level: "Level", goal: "Goal", time: "Convenient time", message: "Comment", title: "New lesson request" }
 };
 
-exports.handler = async function (event) {
-  if (event.httpMethod !== "POST") {
+export default async (req, context) => {
+  if (req.method !== "POST") {
     return json(405, { ok: false, error: "method_not_allowed" });
   }
 
   let payload;
   try {
-    payload = JSON.parse(event.body || "{}");
+    payload = await req.json();
   } catch (e) {
     return json(400, { ok: false, error: "invalid_json" });
   }
@@ -87,7 +86,7 @@ exports.handler = async function (event) {
     return json(400, { ok: false, error: "missing_fields" });
   }
 
-  const ip = event.headers["x-nf-client-connection-ip"] || event.headers["client-ip"] || "unknown";
+  const ip = context.ip || "unknown";
 
   const rateResult = await checkRateLimit(ip);
   if (!rateResult.allowed) {
@@ -128,5 +127,14 @@ exports.handler = async function (event) {
     return json(200, { ok: true });
   } catch (e) {
     return json(502, { ok: false, error: "telegram_unreachable" });
+  }
+};
+
+export const config = {
+  path: "/.netlify/functions/send-telegram",
+  rateLimit: {
+    windowLimit: 10,
+    windowSize: 180,
+    aggregateBy: ["ip"]
   }
 };
