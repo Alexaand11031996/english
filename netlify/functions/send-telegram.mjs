@@ -133,7 +133,7 @@ export default async (req, context) => {
 export const config = {
   path: "/.netlify/functions/send-telegram",
   rateLimit: {
-    windowLimit: 10,
+    windowLimit: 5,
     windowSize: 180,
     aggregateBy: ["ip"]
   }
