@@ -13,6 +13,34 @@
     return { ua: g(entry, pathArr.concat(["ua"]), ""), en: g(entry, pathArr.concat(["en"]), "") };
   }
 
+  function photoBox(url, placeholderText, boxStyle) {
+    var base = {
+      borderRadius: "14px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden",
+      textAlign: "center"
+    };
+    var merged = Object.assign({}, base, boxStyle);
+    if (url) {
+      return h("div", { style: merged }, h("img", { src: url, style: { width: "100%", height: "100%", objectFit: "cover" } }));
+    }
+    return h(
+      "div",
+      {
+        style: Object.assign({}, merged, {
+          background: "repeating-linear-gradient(135deg, rgba(244,241,232,0.05) 0 2px, transparent 2px 14px), #20402E",
+          border: "1px dashed rgba(244,241,232,0.3)",
+          color: "#9FB6A4",
+          fontSize: "12px",
+          padding: "12px"
+        })
+      },
+      placeholderText
+    );
+  }
+
   var SitePreview = createClass({
     render: function () {
       var entry = this.props.entry;
@@ -40,7 +68,13 @@
           h("div", { style: { color: "#E8622C", fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" } }, t(bi(entry, ["hero", "eyebrow"]), lang)),
           h("h1", { style: { fontFamily: "Georgia, serif", fontSize: "32px", margin: "0 0 14px" } }, renderAccentHtml ? h("span", { dangerouslySetInnerHTML: { __html: renderAccentHtml(t(bi(entry, ["hero", "h1"]), lang)) } }) : t(bi(entry, ["hero", "h1"]), lang)),
           h("p", { style: { color: "#9FB6A4", maxWidth: "480px", marginBottom: "16px" } }, t(bi(entry, ["hero", "lead"]), lang)),
-          heroPhoto ? h("img", { src: heroPhoto, style: { maxWidth: "220px", borderRadius: "16px", marginTop: "10px", marginBottom: "16px" } }) : null,
+          h(
+            "div",
+            { style: { display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "18px" } },
+            h("div", { style: { background: "#E8622C", color: "#fff", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnPrimary"]), lang)),
+            h("div", { style: { background: "transparent", color: "#F4F1E8", border: "1.5px solid rgba(244,241,232,0.35)", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnOutline"]), lang))
+          ),
+          photoBox(heroPhoto, t(bi(entry, ["hero", "photoPlaceholder"]), lang), { width: "220px", height: "260px", marginBottom: "16px" }),
           h(
             "div",
             { style: { display: "flex", flexWrap: "wrap", gap: "10px" } },
@@ -86,16 +120,17 @@
           { style: { padding: "32px" } },
           h("div", { style: { color: "#E8622C", fontSize: "12px", fontWeight: 700, textTransform: "uppercase", marginBottom: "10px" } }, t(bi(entry, ["about", "eyebrow"]), lang)),
           h("h2", { style: { fontFamily: "Georgia, serif", fontSize: "24px", marginBottom: "10px" } }, t(bi(entry, ["about", "h2"]), lang)),
-          aboutPhoto ? h("img", { src: aboutPhoto, style: { maxWidth: "180px", borderRadius: "14px", marginBottom: "12px" } }) : null,
+          photoBox(aboutPhoto, t(bi(entry, ["about", "photoPlaceholder"]), lang), { width: "180px", height: "200px", marginBottom: "12px" }),
           h("p", { style: { color: "#4F5F53", fontSize: "14px", marginBottom: "8px" } }, t(bi(entry, ["about", "p1"]), lang)),
           h("p", { style: { color: "#4F5F53", fontSize: "14px", marginBottom: "10px" } }, t(bi(entry, ["about", "p2"]), lang)),
           h(
             "ul",
-            { style: { listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" } },
+            { style: { listStyle: "none", padding: 0, margin: "0 0 14px", display: "flex", flexDirection: "column", gap: "6px" } },
             checklistItems.map(function (item, i) {
               return h("li", { key: i, style: { fontSize: "13px", color: "#152219" } }, "✓ " + t(item, lang));
             })
-          )
+          ),
+          h("div", { style: { display: "inline-block", background: "#E8622C", color: "#fff", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["about", "btn"]), lang))
         ),
 
         h(
