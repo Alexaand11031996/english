@@ -51,28 +51,44 @@ async function processImage(sharp, heicConvert, srcRelPath) {
   if (/^https?:\/\//i.test(srcRelPath)) return srcRelPath;
 
   const srcPath = path.join(ROOT, srcRelPath.replace(/^\/+/, ""));
-  if (!fs.existsSync(srcPath)) return srcRelPath;
-
-  const ext = path.extname(srcPath).toLowerCase();
-  const baseName = path.basename(srcPath, path.extname(srcPath));
-  let inputBuffer = fs.readFileSync(srcPath);
-  let outExt = ext === ".png" ? "png" : "jpg";
-
-  if (ext === ".heic" || ext === ".heif") {
-    inputBuffer = await heicConvert({ buffer: inputBuffer, format: "JPEG", quality: 0.9 });
-    outExt = "jpg";
+  if (!fs.existsSync(srcPath)) {
+    console.warn("[build.js] warning: image not found, skipping: " + srcRelPath);
+    return "";
   }
 
+  const baseName = path.basename(srcPath, path.extname(srcPath));
   const outDir = path.join(DIST, "images");
   fs.mkdirSync(outDir, { recursive: true });
-  const outRelPath = "images/" + baseName + "." + outExt;
+  const outRelPath = "images/" + baseName + ".jpg";
   const outPath = path.join(DIST, outRelPath);
 
-  let pipeline = sharp(inputBuffer).resize({ width: 1600, withoutEnlargement: true }).rotate();
-  pipeline = outExt === "png" ? pipeline.png({ quality: 82 }) : pipeline.jpeg({ quality: 82 });
-  await pipeline.toFile(outPath);
+  try {
+    const ext = path.extname(srcPath).toLowerCase();
+    let inputBuffer = fs.readFileSync(srcPath);
 
-  return outRelPath;
+    if (ext === ".heic" || ext === ".heif") {
+      inputBuffer = await heicConvert({ buffer: inputBuffer, format: "JPEG", quality: 0.9 });
+    }
+
+    await sharp(inputBuffer)
+      .rotate()
+      .resize({ width: 1600, withoutEnlargement: true })
+      .flatten({ background: "#ffffff" })
+      .jpeg({ quality: 82 })
+      .toFile(outPath);
+
+    return outRelPath;
+  } catch (e) {
+    console.warn("[build.js] warning: failed to process image " + srcRelPath + " (" + e.message + "), falling back to the original file");
+    try {
+      const fallbackRelPath = "images/" + baseName + path.extname(srcPath);
+      fs.copyFileSync(srcPath, path.join(DIST, fallbackRelPath));
+      return fallbackRelPath;
+    } catch (copyErr) {
+      console.warn("[build.js] warning: fallback copy also failed for " + srcRelPath + ", omitting the image");
+      return "";
+    }
+  }
 }
 
 function replaceOnce(html, oldStr, newStr) {
@@ -176,8 +192,22 @@ async function build() {
   }
 
   if (sharp && heicConvert) {
-    if (content.hero.photo) content.hero.photo = await processImage(sharp, heicConvert, content.hero.photo);
-    if (content.about.photo) content.about.photo = await processImage(sharp, heicConvert, content.about.photo);
+    if (content.hero.photo) {
+      try {
+        content.hero.photo = await processImage(sharp, heicConvert, content.hero.photo);
+      } catch (e) {
+        console.warn("[build.js] warning: unexpected error processing hero.photo (" + e.message + "), omitting the image");
+        content.hero.photo = "";
+      }
+    }
+    if (content.about.photo) {
+      try {
+        content.about.photo = await processImage(sharp, heicConvert, content.about.photo);
+      } catch (e) {
+        console.warn("[build.js] warning: unexpected error processing about.photo (" + e.message + "), omitting the image");
+        content.about.photo = "";
+      }
+    }
   }
 
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
