@@ -7,10 +7,10 @@ var DEFAULT_CONTENT = {
     email: "alina.english@example.com"
   },
   seo: {
-    title: { ua: "Alina English — англійська з викладачем міжнародного рівня", en: "Alina English — English lessons with an internationally certified teacher" },
+    title: { ua: "Англійська онлайн з викладачем | Alina English", en: "Online English Lessons with a Teacher | Alina English" },
     description: {
-      ua: "Індивідуальні онлайн-уроки англійської з викладачем з 12+ роками досвіду, сертифікатом Oxford і 500+ задоволеними учнями. Підготовка до IELTS, розмовна та ділова англійська.",
-      en: "One-on-one online English lessons with a teacher who has 12+ years of experience, an Oxford certificate and 500+ happy students. IELTS prep, conversational and business English."
+      ua: "Англійська онлайн з досвідченим викладачем: 12+ років практики, Oxford-сертифікат, 500+ учнів. IELTS, розмовна та ділова англійська — уроки під вашу мету.",
+      en: "Learn English online with an experienced teacher: 12+ years, Oxford certificate, 500+ students. IELTS prep, conversational and business English — lessons tailored to you."
     },
     ogImage: "",
     twitterImage: ""

@@ -2,6 +2,12 @@
   command = "node build.js"
   publish = "dist"
 
+[[redirects]]
+  from = "https://imaginative-fenglisu-cefad4.netlify.app/*"
+  to = "https://alina-english.live/:splat"
+  status = 301
+  force = true
+
 [functions]
   directory = "netlify/functions"
 
