@@ -120,10 +120,10 @@ function applyContacts() {
 
 function applyPhotos() {
   if (siteContent.hero.photo) {
-    document.getElementById('heroPhoto').innerHTML = '<img src="' + siteContent.hero.photo + '" alt="">';
+    document.getElementById('heroPhoto').innerHTML = '<img src="' + escapeHtml(siteContent.hero.photo) + '" alt="">';
   }
   if (siteContent.about.photo) {
-    document.getElementById('aboutPhoto').innerHTML = '<img src="' + siteContent.about.photo + '" alt="">';
+    document.getElementById('aboutPhoto').innerHTML = '<img src="' + escapeHtml(siteContent.about.photo) + '" alt="">';
   }
 }
 
