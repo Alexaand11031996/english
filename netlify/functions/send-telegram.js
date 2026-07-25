@@ -2,6 +2,7 @@ const { getStore } = require("@netlify/blobs");
 
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const MIN_INTERVAL_MS = 3 * 60 * 1000;
 
 function json(statusCode, body) {
   return {
@@ -37,13 +38,18 @@ async function checkRateLimit(ip) {
     const raw = await store.get(key, { type: "json" });
     const timestamps = Array.isArray(raw) ? raw.filter(function (ts) { return now - ts < RATE_LIMIT_WINDOW_MS; }) : [];
 
-    if (timestamps.length >= RATE_LIMIT_MAX) return false;
+    if (timestamps.length > 0 && now - timestamps[timestamps.length - 1] < MIN_INTERVAL_MS) {
+      return { allowed: false, reason: "too_soon" };
+    }
+    if (timestamps.length >= RATE_LIMIT_MAX) {
+      return { allowed: false, reason: "rate_limited" };
+    }
 
     timestamps.push(now);
     await store.setJSON(key, timestamps);
-    return true;
+    return { allowed: true };
   } catch (e) {
-    return true;
+    return { allowed: true };
   }
 }
 
@@ -83,9 +89,9 @@ exports.handler = async function (event) {
 
   const ip = event.headers["x-nf-client-connection-ip"] || event.headers["client-ip"] || "unknown";
 
-  const allowed = await checkRateLimit(ip);
-  if (!allowed) {
-    return json(429, { ok: false, error: "rate_limited" });
+  const rateResult = await checkRateLimit(ip);
+  if (!rateResult.allowed) {
+    return json(429, { ok: false, error: rateResult.reason });
   }
 
   const turnstileOk = await verifyTurnstile(turnstileToken, ip);

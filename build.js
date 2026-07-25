@@ -250,6 +250,7 @@ async function build() {
   html = setInner(html, "level", "select", renderSelectOptions(content.booking.form.levels, LANG));
   html = setInner(html, "goal", "select", renderSelectOptions(content.booking.form.goals, LANG));
   html = setInner(html, "consentLabel", "label", t(content.booking.form.consent, LANG));
+  html = setInner(html, "formNote", "p", t(content.booking.form.note, LANG));
 
   const c = content.contacts;
   const tgUrl = "https://t.me/" + c.telegramUsername;

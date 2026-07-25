@@ -179,10 +179,15 @@ document.getElementById('bookingForm').addEventListener('submit', function (e) {
       successBox.style.display = 'block';
       form.reset();
       if (window.turnstile) window.turnstile.reset();
+    } else if (json && (json.error === 'rate_limited' || json.error === 'too_soon')) {
+      errorBox.textContent = t(siteContent.booking.form.tooSoon, currentLang);
+      errorBox.style.display = 'block';
     } else {
+      errorBox.textContent = t(siteContent.booking.form.error, currentLang);
       errorBox.style.display = 'block';
     }
   }).catch(function () {
+    errorBox.textContent = t(siteContent.booking.form.error, currentLang);
     errorBox.style.display = 'block';
   }).finally(function () {
     submitBtn.disabled = false;

@@ -186,6 +186,7 @@ var DEFAULT_CONTENT = {
       sub: { ua: "Заявка надійде мені в Telegram — я відповім протягом дня", en: "The request will reach me on Telegram — I'll reply within a day" },
       success: { ua: "Дякую! Заявку надіслано, я відповім найближчим часом.", en: "Thank you! Your request has been sent — I'll reply soon." },
       error: { ua: "Не вдалося надіслати заявку. Спробуйте ще раз або напишіть напряму в Telegram.", en: "Couldn't send the request. Please try again or message directly on Telegram." },
+      tooSoon: { ua: "Ви вже надсилали заявку нещодавно. Спробуйте ще раз через кілька хвилин.", en: "You've already sent a request recently. Please try again in a few minutes." },
       nameLabel: { ua: "Ім'я", en: "Name" },
       namePh: { ua: "Як до вас звертатися", en: "How should I address you" },
       contactLabel: { ua: "Telegram або телефон", en: "Telegram or phone" },
@@ -212,7 +213,7 @@ var DEFAULT_CONTENT = {
       msgPh: { ua: "Розкажіть трохи про себе і цілі", en: "Tell me a bit about yourself and your goals" },
       submit: { ua: "Надіслати заявку", en: "Send request" },
       sending: { ua: "Надсилаємо…", en: "Sending…" },
-      note: { ua: "Натискаючи «Надіслати», ви погоджуєтесь на обробку даних для зв'язку з вами.", en: "By clicking \"Send\" you agree to data processing for the purpose of contacting you." },
+      note: { ua: "Натискаючи «Надіслати», ви погоджуєтесь на обробку даних згідно з <a href=\"/privacy.html\" target=\"_blank\" rel=\"noopener\">політикою конфіденційності</a>.", en: "By clicking \"Send\" you agree to data processing under the <a href=\"/privacy.html\" target=\"_blank\" rel=\"noopener\">privacy policy</a>." },
       consent: { ua: "Я погоджуюсь з <a href=\"/privacy.html\" target=\"_blank\" rel=\"noopener\">політикою конфіденційності</a>", en: "I agree to the <a href=\"/privacy.html\" target=\"_blank\" rel=\"noopener\">privacy policy</a>" }
     }
   },

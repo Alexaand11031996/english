@@ -235,6 +235,7 @@ collections:
                   - { label: "Підзаголовок форми", name: sub, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Повідомлення про успіх", name: success, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
                   - { label: "Повідомлення про помилку", name: error, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Повідомлення «занадто рано» (антиспам, менше 3 хв з останньої заявки)", name: tooSoon, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
                   - { label: "Підпис поля «Ім'я»", name: nameLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Плейсхолдер поля «Ім'я»", name: namePh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Підпис поля «Контакт»", name: contactLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
@@ -261,7 +262,7 @@ collections:
                   - { label: "Плейсхолдер «Коментар»", name: msgPh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Текст кнопки «Надіслати»", name: submit, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
                   - { label: "Текст кнопки під час відправки", name: sending, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
-                  - { label: "Примітка під кнопкою", name: note, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Примітка під кнопкою", name: note, widget: object, hint: "Містить посилання <a href=...>...</a> на політику конфіденційності — не видаляйте цю частину.", fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
                   - { label: "Текст згоди", name: consent, widget: object, hint: "Не видаляйте частину з <a href=...>...</a> — це клікабельне посилання на політику конфіденційності.", fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
 
           - label: "Секція «Часті запитання»"
