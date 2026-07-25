@@ -97,6 +97,7 @@ function applyContacts() {
     if (el) el.setAttribute('href', tgUrl);
   });
   document.getElementById('contactInstagram').setAttribute('href', igUrl);
+  document.getElementById('navMenuInstagram').setAttribute('href', igUrl);
   document.getElementById('contactPhone').setAttribute('href', telUrl);
   document.getElementById('contactEmail').setAttribute('href', mailUrl);
   document.getElementById('footerInstagram').setAttribute('href', igUrl);
@@ -156,10 +157,14 @@ navBurger.addEventListener('click', function () {
   setNavMenuOpen(!navMenu.classList.contains('open'));
 });
 
-navMenu.querySelectorAll('a').forEach(function (link) {
-  link.addEventListener('click', function () {
-    setNavMenuOpen(false);
-  });
+navMenu.addEventListener('click', function () {
+  setNavMenuOpen(false);
+});
+
+document.addEventListener('click', function (e) {
+  if (!navMenu.classList.contains('open')) return;
+  if (navMenu.contains(e.target) || navBurger.contains(e.target)) return;
+  setNavMenuOpen(false);
 });
 
 applyContacts();

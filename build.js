@@ -262,6 +262,7 @@ async function build() {
     html = setAttr(html, id, "href", escapeHtml(tgUrl));
   });
   html = setAttr(html, "contactInstagram", "href", escapeHtml(igUrl));
+  html = setAttr(html, "navMenuInstagram", "href", escapeHtml(igUrl));
   html = setAttr(html, "contactPhone", "href", escapeHtml(telUrl));
   html = setAttr(html, "contactEmail", "href", escapeHtml(mailUrl));
   html = setAttr(html, "footerInstagram", "href", escapeHtml(igUrl));

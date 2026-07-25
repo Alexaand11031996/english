@@ -37,7 +37,7 @@ var DEFAULT_CONTENT = {
     formats: { ua: "Формати", en: "Pricing" },
     testimonials: { ua: "Відгуки", en: "Reviews" },
     faq: { ua: "Питання", en: "FAQ" },
-    cta: { ua: "Записатися на урок", en: "Book a lesson" }
+    cta: { ua: "Записатися", en: "Book now" }
   },
   hero: {
     eyebrow: { ua: "Викладачка англійської · Онлайн-уроки", en: "English Teacher · Online Lessons" },
