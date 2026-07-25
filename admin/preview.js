@@ -41,12 +41,81 @@
     );
   }
 
+  function collectPhotoPaths(entry) {
+    var paths = [];
+    var heroPhoto = g(entry, ["hero", "photo"], "");
+    if (heroPhoto) paths.push(heroPhoto);
+    var aboutPhoto = g(entry, ["about", "photo"], "");
+    if (aboutPhoto) paths.push(aboutPhoto);
+    g(entry, ["hero", "avatars"], []).forEach(function (avatar) {
+      if (avatar.photo) paths.push(avatar.photo);
+    });
+    g(entry, ["testimonials", "items"], []).forEach(function (item) {
+      if (item.photo) paths.push(item.photo);
+    });
+    return paths;
+  }
+
   var SitePreview = createClass({
+    getInitialState: function () {
+      return { resolvedAssets: {} };
+    },
+
+    resolveAssets: function (entry) {
+      var paths = collectPhotoPaths(entry);
+      var signature = JSON.stringify(paths);
+      if (signature === this._lastResolvedSignature) return;
+      this._lastResolvedSignature = signature;
+
+      var self = this;
+      paths.forEach(function (path) {
+        if (self.state.resolvedAssets[path] !== undefined) return;
+        var result = self.props.getAsset(path);
+        if (result && typeof result.then === "function") {
+          result.then(function (asset) {
+            var url = asset && asset.toString ? asset.toString() : asset;
+            self.setState(function (prev) {
+              var next = Object.assign({}, prev.resolvedAssets);
+              next[path] = url;
+              return { resolvedAssets: next };
+            });
+          }).catch(function () {
+            self.setState(function (prev) {
+              var next = Object.assign({}, prev.resolvedAssets);
+              next[path] = "";
+              return { resolvedAssets: next };
+            });
+          });
+        } else {
+          var url = result && result.toString ? result.toString() : result;
+          self.setState(function (prev) {
+            var next = Object.assign({}, prev.resolvedAssets);
+            next[path] = url;
+            return { resolvedAssets: next };
+          });
+        }
+      });
+    },
+
+    componentDidMount: function () {
+      this.resolveAssets(this.props.entry);
+    },
+
+    componentDidUpdate: function () {
+      this.resolveAssets(this.props.entry);
+    },
+
+    assetUrl: function (path) {
+      if (!path) return "";
+      return this.state.resolvedAssets[path] || "";
+    },
+
     render: function () {
       var entry = this.props.entry;
+      var assetUrl = this.assetUrl.bind(this);
 
-      var heroPhoto = this.props.getAsset(g(entry, ["hero", "photo"], ""));
-      var aboutPhoto = this.props.getAsset(g(entry, ["about", "photo"], ""));
+      var heroPhoto = assetUrl(g(entry, ["hero", "photo"], ""));
+      var aboutPhoto = assetUrl(g(entry, ["about", "photo"], ""));
 
       var heroStats = g(entry, ["hero", "stats"], []);
       var heroAvatars = g(entry, ["hero", "avatars"], []);
@@ -80,7 +149,7 @@
             "div",
             { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" } },
             heroAvatars.map(function (avatar, i) {
-              var avatarUrl = this.props.getAsset(g(entry, ["hero", "avatars", i, "photo"], ""));
+              var avatarUrl = assetUrl(avatar.photo);
               return h(
                 "div",
                 {
@@ -95,7 +164,7 @@
                 },
                 avatarUrl ? h("img", { src: avatarUrl, style: { width: "100%", height: "100%", objectFit: "cover" } }) : (avatar.initial || "")
               );
-            }.bind(this)),
+            }),
             h("span", { style: { fontSize: "12px", color: "#9FB6A4", marginLeft: "6px" } }, t(bi(entry, ["hero", "proof"]), lang))
           ),
           h(
@@ -213,7 +282,7 @@
             "div",
             { style: { display: "flex", gap: "12px", overflowX: "auto" } },
             testimonialItems.map(function (item, i) {
-              var avatarUrl = this.props.getAsset(g(entry, ["testimonials", "items", i, "photo"], ""));
+              var avatarUrl = assetUrl(item.photo);
               return h(
                 "div",
                 { key: i, style: { flex: "0 0 220px", background: "#fff", border: "1px solid #E3DCC9", borderRadius: "14px", padding: "14px" } },
@@ -232,7 +301,7 @@
                   )
                 )
               );
-            }.bind(this))
+            })
           )
         ),
 
