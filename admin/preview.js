@@ -144,7 +144,23 @@
             h("div", { style: { background: "#E8622C", color: "#fff", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnPrimary"]), lang)),
             h("div", { style: { background: "transparent", color: "#F4F1E8", border: "1.5px solid rgba(244,241,232,0.35)", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnOutline"]), lang))
           ),
-          photoBox(heroPhoto, t(bi(entry, ["hero", "photoPlaceholder"]), lang), { width: "220px", height: "260px", marginBottom: "16px" }),
+          h(
+            "div",
+            { style: { position: "relative", width: "220px", marginBottom: "16px" } },
+            photoBox(heroPhoto, t(bi(entry, ["hero", "photoPlaceholder"]), lang), { width: "220px", height: "260px" }),
+            h(
+              "div",
+              { style: { position: "absolute", top: "10px", left: "-16px", background: "#122016", border: "1.5px solid #C9E4B8", borderRadius: "999px", padding: "8px 12px", textAlign: "center", boxShadow: "0 10px 20px -8px rgba(0,0,0,0.5)" } },
+              h("div", { style: { fontFamily: "Georgia, serif", fontSize: "13px", fontWeight: 700, color: "#C9E4B8" } }, g(entry, ["hero", "badges", 0, "num"], "")),
+              h("div", { style: { fontSize: "8px", color: "#9FB6A4" } }, t(bi(entry, ["hero", "badges", 0, "label"]), lang))
+            ),
+            h(
+              "div",
+              { style: { position: "absolute", bottom: "12px", right: "-12px", background: "#E8622C", color: "#fff", borderRadius: "999px", padding: "9px 12px", textAlign: "center", boxShadow: "0 8px 16px -6px rgba(232,98,44,0.6)" } },
+              h("div", { style: { fontFamily: "Georgia, serif", fontSize: "13px", fontWeight: 700 } }, g(entry, ["hero", "badges", 1, "num"], "")),
+              h("div", { style: { fontSize: "8px" } }, t(bi(entry, ["hero", "badges", 1, "label"]), lang))
+            )
+          ),
           h(
             "div",
             { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" } },
