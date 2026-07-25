@@ -1,10 +1,10 @@
 var DEFAULT_CONTENT = {
   site: { name: "Alina English" },
   contacts: {
-    telegramUsername: "alina_english",
-    instagramUsername: "alina.english",
-    phone: "+380 63 123 45 67",
-    email: "alina.english@example.com"
+    telegramUsername: "your_username",
+    instagramUsername: "your_username",
+    phone: "+380 00 000 00 00",
+    email: "your@email.com"
   },
   seo: {
     title: { ua: "Англійська онлайн з викладачем | Alina English", en: "Online English Lessons with a Teacher | Alina English" },
