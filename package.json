@@ -1,0 +1,17 @@
+{
+  "name": "alina-english",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alina English landing page — static site with Decap CMS admin",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "8.1.0",
+    "heic-convert": "2.1.0",
+    "sharp": "0.33.5"
+  },
+  "devDependencies": {
+    "jsdom": "25.0.1"
+  }
+}

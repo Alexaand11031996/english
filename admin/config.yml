@@ -1,0 +1,269 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+site_url: "https://alina-english.netlify.app"
+display_url: "https://alina-english.netlify.app"
+
+collections:
+  - name: "content"
+    label: "Контент сайту"
+    files:
+      - name: "site"
+        label: "Alina English — сайт"
+        file: "content/site.json"
+        fields:
+          - { label: "Назва сайту", name: "site", widget: object, fields: [
+              { label: "Назва (логотип)", name: "name", widget: string }
+            ] }
+
+          - label: "SEO / мета-теги"
+            name: meta
+            widget: object
+            fields:
+              - { label: "Заголовок сторінки", name: title, widget: object, fields: [
+                  { label: "Українською", name: ua, widget: string },
+                  { label: "English", name: en, widget: string }
+                ] }
+              - { label: "Опис сторінки", name: description, widget: object, fields: [
+                  { label: "Українською", name: ua, widget: text },
+                  { label: "English", name: en, widget: text }
+                ] }
+
+          - label: "Навігація"
+            name: nav
+            widget: object
+            fields:
+              - { label: "Напрямки", name: teach, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Про мене", name: about, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Формати", name: formats, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Відгуки", name: testimonials, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Питання", name: faq, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Кнопка запису", name: cta, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "Головний екран (Hero)"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Фото Аліни", name: photo, widget: image, required: false }
+              - { label: "Плейсхолдер (якщо фото не завантажено)", name: photoPlaceholder, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Ярлик над заголовком", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Заголовок (H1)"
+                name: h1
+                widget: object
+                fields:
+                  - { label: "Українською (слово в *зірочках* виділяється кольором)", name: ua, widget: string }
+                  - { label: "English (word in *asterisks* gets highlighted)", name: en, widget: string }
+              - { label: "Підзаголовок", name: lead, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - { label: "Кнопка (основна)", name: btnPrimary, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Кнопка (Telegram)", name: btnOutline, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Рядок довіри (4.9/5 ...)", name: proof, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Статистика (плашки)"
+                name: stats
+                widget: list
+                fields:
+                  - { label: "Число", name: num, widget: string }
+                  - { label: "Підпис", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Плаваючі бейджі (рівно 2)"
+                name: badges
+                widget: list
+                min: 2
+                max: 2
+                fields:
+                  - { label: "Число", name: num, widget: string }
+                  - { label: "Підпис", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "Секція «Чого я навчаю»"
+            name: teach
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Примітка внизу", name: note, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Картки напрямків"
+                name: cards
+                widget: list
+                fields:
+                  - label: "Іконка"
+                    name: icon
+                    widget: select
+                    options:
+                      - { label: "Мовна бульбашка", value: bubble }
+                      - { label: "Документ / іспит", value: document }
+                      - { label: "Будівля / бізнес", value: building }
+                      - { label: "Шари / рівні", value: layers }
+                      - { label: "Академічна шапка", value: cap }
+                      - { label: "Мішень / ціль", value: target }
+                  - { label: "Назва", name: t, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Опис", name: d, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+
+          - label: "Смуга довіри (4 пункти)"
+            name: trust
+            widget: object
+            fields:
+              - label: "Пункти"
+                name: items
+                widget: list
+                field: { label: "Пункт", name: item, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "Секція «Про мене»"
+            name: about
+            widget: object
+            fields:
+              - { label: "Фото Аліни", name: photo, widget: image, required: false }
+              - { label: "Плейсхолдер (якщо фото не завантажено)", name: photoPlaceholder, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Число на бейджі", name: badgeNum, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Підпис на бейджі", name: badgeLbl, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Абзац 1", name: p1, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - { label: "Абзац 2", name: p2, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - label: "Список переваг (чекліст)"
+                name: checklist
+                widget: list
+                field: { label: "Пункт", name: item, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Кнопка", name: btn, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "Секція «Формати та ціни»"
+            name: pricing
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Опис", name: p, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - { label: "Примітка внизу", name: note, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Текст кнопки на картках", name: btnLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Тарифні картки"
+                name: cards
+                widget: list
+                fields:
+                  - { label: "Позначка (бейдж)", name: tag, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Назва", name: title, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Ціна", name: price, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Приписка до ціни (напр. / 60 хв)", name: priceSuffix, widget: object, required: false, fields: [{ label: UA, name: ua, widget: string, required: false }, { label: EN, name: en, widget: string, required: false }] }
+                  - { label: "Виділена картка (по центру)", name: featured, widget: boolean, default: false }
+                  - label: "Список опцій"
+                    name: features
+                    widget: list
+                    field: { label: "Опція", name: item, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "Секція «Як це працює»"
+            name: process
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Примітка внизу", name: note, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - label: "Кроки"
+                name: steps
+                widget: list
+                fields:
+                  - { label: "Назва кроку", name: t, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Опис кроку", name: d, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+
+          - label: "Секція «Відгуки»"
+            name: testimonials
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Відгуки"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Ініціал (буква на аватарі)", name: initial, widget: string }
+                  - { label: "Текст відгуку", name: quote, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Ім'я, вік", name: name, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Напрямок занять", name: role, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "Секція «Запис на урок»"
+            name: booking
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Опис", name: p, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - { label: "Підпис «Телефон»", name: phoneLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Контакти"
+                name: contacts
+                widget: object
+                fields:
+                  - { label: "Telegram (без @)", name: telegramUsername, widget: string }
+                  - { label: "Instagram (без @)", name: instagramUsername, widget: string }
+                  - { label: "Телефон", name: phone, widget: string }
+                  - { label: "Email", name: email, widget: string }
+              - label: "Форма запису"
+                name: form
+                widget: object
+                fields:
+                  - { label: "Заголовок форми", name: h3, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Підзаголовок форми", name: sub, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Повідомлення про успіх", name: success, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Повідомлення про помилку", name: error, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Підпис поля «Ім'я»", name: nameLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Плейсхолдер поля «Ім'я»", name: namePh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Підпис поля «Контакт»", name: contactLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Плейсхолдер поля «Контакт»", name: contactPh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Підпис «Ваш рівень»", name: levelLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - label: "Варіанти рівня"
+                    name: levels
+                    widget: list
+                    fields:
+                      - { label: "Значення (латиницею, без пробілів)", name: value, widget: string }
+                      - { label: "Текст", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Підпис «Мета занять»", name: goalLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - label: "Варіанти мети"
+                    name: goals
+                    widget: list
+                    fields:
+                      - { label: "Значення (латиницею, без пробілів)", name: value, widget: string }
+                      - { label: "Текст", name: label, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Підпис «Зручний час»", name: timeLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Плейсхолдер «Зручний час»", name: timePh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Підпис «Коментар»", name: msgLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Плейсхолдер «Коментар»", name: msgPh, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Текст кнопки «Надіслати»", name: submit, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Текст кнопки під час відправки", name: sending, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Примітка під кнопкою", name: note, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+                  - { label: "Текст згоди (можна залишити посилання на політику)", name: consent, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+
+          - label: "Секція «Часті запитання»"
+            name: faq
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - label: "Питання"
+                name: items
+                widget: list
+                fields:
+                  - { label: "Питання", name: q, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+                  - { label: "Відповідь", name: a, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+
+          - label: "Фінальний заклик до дії"
+            name: cta
+            widget: object
+            fields:
+              - { label: "Ярлик", name: eyebrow, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Опис", name: p, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+
+          - label: "Підвал сайту"
+            name: footer
+            widget: object
+            fields:
+              - { label: "Опис", name: desc, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
+              - { label: "Заголовок «Навігація»", name: navTitle, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Заголовок «Контакти»", name: contactsTitle, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Копірайт", name: copy, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+              - { label: "Підпис", name: tag, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
+
+          - label: "SEO зображення (необов'язково)"
+            name: seo
+            widget: object
+            fields:
+              - { label: "Зображення для соцмереж (og:image)", name: ogImage, widget: image, required: false }
+              - { label: "Зображення для Twitter", name: twitterImage, widget: image, required: false }
