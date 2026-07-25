@@ -30,8 +30,8 @@
       "div",
       {
         style: Object.assign({}, merged, {
-          background: "repeating-linear-gradient(135deg, rgba(244,241,232,0.05) 0 2px, transparent 2px 14px), #20402E",
-          border: "1px dashed rgba(244,241,232,0.3)",
+          background: "linear-gradient(160deg, #20402E, #1A2E20), repeating-linear-gradient(135deg, rgba(244,241,232,0.04) 0 2px, transparent 2px 14px)",
+          border: "1px solid rgba(244,241,232,0.1)",
           color: "#9FB6A4",
           fontSize: "12px",
           padding: "12px"
@@ -326,8 +326,15 @@
         h(
           "section",
           { style: { background: "#122016", color: "#F4F1E8", padding: "36px 32px", textAlign: "center" } },
+          h("div", { style: { color: "#C9E4B8", fontSize: "12px", fontWeight: 700, textTransform: "uppercase", marginBottom: "10px" } }, t(bi(entry, ["cta", "eyebrow"]), lang)),
           h("h2", { style: { fontFamily: "Georgia, serif", fontSize: "22px", marginBottom: "8px" } }, t(bi(entry, ["cta", "h2"]), lang)),
-          h("p", { style: { color: "#9FB6A4", fontSize: "13px" } }, t(bi(entry, ["cta", "p"]), lang))
+          h("p", { style: { color: "#9FB6A4", fontSize: "13px", marginBottom: "18px" } }, t(bi(entry, ["cta", "p"]), lang)),
+          h(
+            "div",
+            { style: { display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" } },
+            h("div", { style: { background: "#E8622C", color: "#fff", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnPrimary"]), lang)),
+            h("div", { style: { background: "transparent", color: "#F4F1E8", border: "1.5px solid rgba(244,241,232,0.35)", borderRadius: "999px", padding: "10px 18px", fontSize: "13px", fontWeight: 600 } }, t(bi(entry, ["hero", "btnOutline"]), lang))
+          )
         ),
 
         h(
