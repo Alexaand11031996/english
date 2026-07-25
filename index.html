@@ -160,8 +160,12 @@
 
   /* Trust bar */
   .trustbar{background:var(--bg-dark-2);border-top:1px solid var(--border-dark);padding:22px 0;}
-  .trustbar .container{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:center;}
-  .trust-item{display:flex;align-items:center;gap:9px;color:var(--mint);font-size:13.5px;font-weight:500;}
+  .trust-carousel{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
+  .trust-track{display:flex;gap:28px;width:max-content;align-items:center;animation:trustScroll 28s linear infinite;}
+  .trust-carousel:hover .trust-track{animation-play-state:paused;}
+  @keyframes trustScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion:reduce){.trust-track{animation:none;}}
+  .trust-item{display:flex;align-items:center;gap:9px;color:var(--mint);font-size:13.5px;font-weight:500;flex-shrink:0;}
   .trust-item svg{flex-shrink:0;}
 
   /* Section base */
@@ -451,7 +455,11 @@
 
 <!-- ================= TRUST BAR ================= -->
 <div class="trustbar">
-  <div class="container" id="trustItems"></div>
+  <div class="container">
+    <div class="trust-carousel">
+      <div class="trust-track" id="trustItems"></div>
+    </div>
+  </div>
 </div>
 
 <!-- ================= ABOUT ================= -->

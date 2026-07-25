@@ -105,11 +105,17 @@ function renderFaqItem(item, lang) {
   );
 }
 
-function renderTrustItem(item, lang) {
+function renderTrustItem(item, lang, ariaHidden) {
   return (
-    '<div class="trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>' +
+    '<div class="trust-item"' + (ariaHidden ? ' aria-hidden="true"' : '') + '><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>' +
       '<span>' + escapeHtml(t(item, lang)) + '</span></div>'
   );
+}
+
+function renderTrustTrack(items, lang) {
+  var once = items.map(function (item) { return renderTrustItem(item, lang, false); }).join("");
+  var twice = items.map(function (item) { return renderTrustItem(item, lang, true); }).join("");
+  return once + twice;
 }
 
 function renderChecklistItem(item, lang) {
@@ -142,6 +148,7 @@ if (typeof module !== "undefined" && module.exports) {
     renderTestimonialsTrack: renderTestimonialsTrack,
     renderFaqItem: renderFaqItem,
     renderTrustItem: renderTrustItem,
+    renderTrustTrack: renderTrustTrack,
     renderChecklistItem: renderChecklistItem,
     renderHeroStat: renderHeroStat,
     renderSelectOptions: renderSelectOptions,

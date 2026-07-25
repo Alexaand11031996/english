@@ -17,7 +17,7 @@ var currentLang = document.documentElement.lang === 'en' ? 'en' : 'ua';
 
 function renderLists(lang) {
   document.getElementById('teachGrid').innerHTML = siteContent.teach.cards.map(function (c) { return renderTeachCard(c, lang); }).join('');
-  document.getElementById('trustItems').innerHTML = siteContent.trust.items.map(function (i) { return renderTrustItem(i, lang); }).join('');
+  document.getElementById('trustItems').innerHTML = renderTrustTrack(siteContent.trust.items, lang);
   document.getElementById('aboutChecklist').innerHTML = siteContent.about.checklist.map(function (i) { return renderChecklistItem(i, lang); }).join('');
   document.getElementById('priceGrid').innerHTML = siteContent.pricing.cards.map(function (c) { return renderPriceCard(c, lang, t(siteContent.pricing.btnLabel, lang)); }).join('');
   document.getElementById('processGrid').innerHTML = siteContent.process.steps.map(function (s, i) { return renderProcessStep(s, i, lang); }).join('');

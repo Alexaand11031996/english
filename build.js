@@ -13,6 +13,7 @@ const {
   renderTestimonialsTrack,
   renderFaqItem,
   renderTrustItem,
+  renderTrustTrack,
   renderChecklistItem,
   renderHeroStat,
   renderSelectOptions,
@@ -278,7 +279,7 @@ async function build() {
   html = setInner(html, "heroStats", "div", content.hero.stats.map(function (s) { return renderHeroStat(s, LANG); }).join(""));
   html = setInner(html, "heroAvatarStack", "div", renderAvatarStack(content.hero.avatars));
   html = setInner(html, "teachGrid", "div", content.teach.cards.map(function (c) { return renderTeachCard(c, LANG); }).join(""));
-  html = setInner(html, "trustItems", "div", content.trust.items.map(function (i) { return renderTrustItem(i, LANG); }).join(""));
+  html = setInner(html, "trustItems", "div", renderTrustTrack(content.trust.items, LANG));
   html = setInner(html, "aboutChecklist", "ul", content.about.checklist.map(function (i) { return renderChecklistItem(i, LANG); }).join(""));
   const priceBtnLabel = t(content.pricing.btnLabel, LANG);
   html = setInner(html, "priceGrid", "div", content.pricing.cards.map(function (c) { return renderPriceCard(c, LANG, priceBtnLabel); }).join(""));
