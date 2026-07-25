@@ -1,5 +1,11 @@
 var DEFAULT_CONTENT = {
   site: { name: "Alina English" },
+  contacts: {
+    telegramUsername: "alina_english",
+    instagramUsername: "alina.english",
+    phone: "+380 63 123 45 67",
+    email: "alina.english@example.com"
+  },
   meta: {
     title: { ua: "Alina English — англійська з викладачем міжнародного рівня", en: "Alina English — English lessons with an internationally certified teacher" },
     description: {
@@ -157,12 +163,6 @@ var DEFAULT_CONTENT = {
       en: "Fill out the form — the request will reach me on Telegram and I'll reply within a day. Or message or call directly."
     },
     phoneLabel: { ua: "Телефон", en: "Phone" },
-    contacts: {
-      telegramUsername: "alina_english",
-      instagramUsername: "alina.english",
-      phone: "+380 63 123 45 67",
-      email: "alina.english@example.com"
-    },
     form: {
       h3: { ua: "Записатися на урок", en: "Book a lesson" },
       sub: { ua: "Заявка надійде мені в Telegram — я відповім протягом дня", en: "The request will reach me on Telegram — I'll reply within a day" },

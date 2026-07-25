@@ -81,7 +81,7 @@ function applyStaticFields(lang) {
 }
 
 function applyContacts() {
-  var c = siteContent.booking.contacts;
+  var c = siteContent.contacts;
   var tgUrl = 'https://t.me/' + c.telegramUsername;
   var igUrl = 'https://instagram.com/' + c.instagramUsername;
   var telUrl = 'tel:' + c.phone.replace(/[^+\d]/g, '');

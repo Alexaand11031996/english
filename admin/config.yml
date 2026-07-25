@@ -20,6 +20,15 @@ collections:
               { label: "Назва (логотип)", name: "name", widget: string }
             ] }
 
+          - label: "Контакти сайту (використовуються в підвалі сайту та в блоці «Запис на урок»)"
+            name: contacts
+            widget: object
+            fields:
+              - { label: "Telegram (без @)", name: telegramUsername, widget: string }
+              - { label: "Instagram (без @)", name: instagramUsername, widget: string }
+              - { label: "Телефон", name: phone, widget: string }
+              - { label: "Email", name: email, widget: string }
+
           - label: "SEO / мета-теги"
             name: meta
             widget: object
@@ -187,14 +196,6 @@ collections:
               - { label: "Заголовок", name: h2, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Опис", name: p, widget: object, fields: [{ label: UA, name: ua, widget: text }, { label: EN, name: en, widget: text }] }
               - { label: "Підпис «Телефон»", name: phoneLabel, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
-              - label: "Контакти"
-                name: contacts
-                widget: object
-                fields:
-                  - { label: "Telegram (без @)", name: telegramUsername, widget: string }
-                  - { label: "Instagram (без @)", name: instagramUsername, widget: string }
-                  - { label: "Телефон", name: phone, widget: string }
-                  - { label: "Email", name: email, widget: string }
               - label: "Форма запису"
                 name: form
                 widget: object

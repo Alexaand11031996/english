@@ -157,7 +157,7 @@
         h(
           "section",
           { style: { background: "#1A2E20", color: "#9FB6A4", padding: "24px 32px", fontSize: "12px" } },
-          "Telegram: @" + g(entry, ["booking", "contacts", "telegramUsername"], "") + " · Instagram: @" + g(entry, ["booking", "contacts", "instagramUsername"], "") + " · " + g(entry, ["booking", "contacts", "phone"], "") + " · " + g(entry, ["booking", "contacts", "email"], "")
+          "Telegram: @" + g(entry, ["contacts", "telegramUsername"], "") + " · Instagram: @" + g(entry, ["contacts", "instagramUsername"], "") + " · " + g(entry, ["contacts", "phone"], "") + " · " + g(entry, ["contacts", "email"], "")
         )
       );
     }

@@ -187,7 +187,7 @@ async function build() {
   html = setInner(html, "goal", "select", renderSelectOptions(content.booking.form.goals, LANG));
   html = setInner(html, "consentLabel", "label", t(content.booking.form.consent, LANG));
 
-  const c = content.booking.contacts;
+  const c = content.contacts;
   const tgUrl = "https://t.me/" + c.telegramUsername;
   const igUrl = "https://instagram.com/" + c.instagramUsername;
   const telUrl = "tel:" + c.phone.replace(/[^+\d]/g, "");

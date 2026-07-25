@@ -2,6 +2,12 @@
   "site": {
     "name": "Alina English"
   },
+  "contacts": {
+    "telegramUsername": "alina_english",
+    "instagramUsername": "alina.english",
+    "phone": "+380 63 123 45 67",
+    "email": "alina.english@example.com"
+  },
   "meta": {
     "title": {
       "ua": "Alina English — англійська з викладачем міжнародного рівня",
@@ -586,12 +592,6 @@
     "phoneLabel": {
       "ua": "Телефон",
       "en": "Phone"
-    },
-    "contacts": {
-      "telegramUsername": "alina_english",
-      "instagramUsername": "alina.english",
-      "phone": "+380 63 123 45 67",
-      "email": "alina.english@example.com"
     },
     "form": {
       "h3": {
