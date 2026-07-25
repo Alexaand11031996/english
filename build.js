@@ -24,6 +24,7 @@ const LANG = "ua";
 const assetsToCopy = [
   "templates.js",
   "content.default.js",
+  "main.js",
   "content",
   "admin",
   "privacy.html"
@@ -207,7 +208,13 @@ async function build() {
   html = setInner(html, "footerSiteName", "span", escapeHtml(content.site.name));
 
   const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY || "";
-  html = setAttr(html, "turnstileWidget", "data-sitekey", escapeHtml(turnstileSiteKey));
+  if (turnstileSiteKey) {
+    html = setAttr(html, "turnstileWidget", "data-sitekey", escapeHtml(turnstileSiteKey));
+    html = html.replace(/<!--TURNSTILE_SCRIPT_START-->|<!--TURNSTILE_SCRIPT_END-->|<!--TURNSTILE_WIDGET_START-->|<!--TURNSTILE_WIDGET_END-->/g, "");
+  } else {
+    html = html.replace(/<!--TURNSTILE_SCRIPT_START-->[\s\S]*?<!--TURNSTILE_SCRIPT_END-->/, "");
+    html = html.replace(/<!--TURNSTILE_WIDGET_START-->[\s\S]*?<!--TURNSTILE_WIDGET_END-->/, "");
+  }
 
   html = replaceOnce(html, "<!--SITE_CONTENT_DATA-->", JSON.stringify(content).replace(/</g, "\\u003c"));
 
