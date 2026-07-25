@@ -144,6 +144,24 @@ document.querySelectorAll('.lang-btn').forEach(function (btn) {
   });
 });
 
+var navBurger = document.getElementById('navBurger');
+var navMenu = document.getElementById('navMenu');
+
+function setNavMenuOpen(open) {
+  navMenu.classList.toggle('open', open);
+  navBurger.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+navBurger.addEventListener('click', function () {
+  setNavMenuOpen(!navMenu.classList.contains('open'));
+});
+
+navMenu.querySelectorAll('a').forEach(function (link) {
+  link.addEventListener('click', function () {
+    setNavMenuOpen(false);
+  });
+});
+
 applyContacts();
 applyPhotos();
 applyLang(currentLang);
