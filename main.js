@@ -68,10 +68,10 @@ function applyStaticFields(lang) {
 
   document.getElementById('siteName').textContent = siteContent.site.name;
   document.getElementById('footerSiteName').textContent = siteContent.site.name;
-  document.getElementById('pageTitle').textContent = t(siteContent.meta.title, lang);
-  document.getElementById('pageDesc').setAttribute('content', t(siteContent.meta.description, lang));
-  document.getElementById('ogTitle').setAttribute('content', t(siteContent.meta.title, lang));
-  document.getElementById('ogDesc').setAttribute('content', t(siteContent.meta.description, lang));
+  document.getElementById('pageTitle').textContent = t(siteContent.seo.title, lang);
+  document.getElementById('pageDesc').setAttribute('content', t(siteContent.seo.description, lang));
+  document.getElementById('ogTitle').setAttribute('content', t(siteContent.seo.title, lang));
+  document.getElementById('ogDesc').setAttribute('content', t(siteContent.seo.description, lang));
 
   document.querySelectorAll('.lang-btn').forEach(function (btn) {
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);

@@ -126,6 +126,39 @@ function setAttr(html, id, attr, value) {
   });
 }
 
+const THEME_VARS = {
+  bgDark: "--bg-dark",
+  bgDark2: "--bg-dark-2",
+  bgDark3: "--bg-dark-3",
+  orange: "--orange",
+  orangeHover: "--orange-hover",
+  mint: "--mint",
+  mintSoft: "--mint-soft",
+  cream: "--cream",
+  cream2: "--cream-2",
+  textDark: "--text-dark",
+  textMutedDark: "--text-muted-dark",
+  textLight: "--text-light",
+  textMutedLight: "--text-muted-light",
+  borderSoft: "--border-soft"
+};
+
+const HEX_COLOR_RE = /^#[0-9a-fA-F]{6}$/;
+
+function bakeTheme(html, theme, defaultTheme) {
+  Object.keys(THEME_VARS).forEach(function (key) {
+    const cssVar = THEME_VARS[key];
+    let value = theme[key];
+    if (!HEX_COLOR_RE.test(value)) {
+      console.warn("[build.js] warning: theme." + key + ' ("' + value + '") is not a valid 6-digit hex color, falling back to default');
+      value = defaultTheme[key];
+    }
+    const re = new RegExp("(" + cssVar + ":)[^;]+(;)");
+    html = html.replace(re, "$1" + value + "$2");
+  });
+  return html;
+}
+
 async function build() {
   const siteJsonPath = path.join(ROOT, "content", "site.json");
   const siteJson = readJsonSafe(siteJsonPath, {});
@@ -150,11 +183,12 @@ async function build() {
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 
   html = bakeI18nAttrs(html, content, LANG);
+  html = bakeTheme(html, content.theme, DEFAULT_CONTENT.theme);
 
-  html = setInner(html, "pageTitle", "title", escapeHtml(t(content.meta.title, LANG)));
-  html = setAttr(html, "pageDesc", "content", escapeHtml(t(content.meta.description, LANG)));
-  html = setAttr(html, "ogTitle", "content", escapeHtml(t(content.meta.title, LANG)));
-  html = setAttr(html, "ogDesc", "content", escapeHtml(t(content.meta.description, LANG)));
+  html = setInner(html, "pageTitle", "title", escapeHtml(t(content.seo.title, LANG)));
+  html = setAttr(html, "pageDesc", "content", escapeHtml(t(content.seo.description, LANG)));
+  html = setAttr(html, "ogTitle", "content", escapeHtml(t(content.seo.title, LANG)));
+  html = setAttr(html, "ogDesc", "content", escapeHtml(t(content.seo.description, LANG)));
   const ogImage = content.seo.ogImage || content.hero.photo || "";
   html = setAttr(html, "ogImage", "content", escapeHtml(ogImage));
   const twitterImage = content.seo.twitterImage || ogImage;

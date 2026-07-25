@@ -29,18 +29,40 @@ collections:
               - { label: "Телефон", name: phone, widget: string }
               - { label: "Email", name: email, widget: string }
 
-          - label: "SEO / мета-теги"
-            name: meta
+          - label: "SEO (заголовок і опис для Google, картинка для соцмереж)"
+            name: seo
             widget: object
             fields:
-              - { label: "Заголовок сторінки", name: title, widget: object, fields: [
+              - { label: "Заголовок сторінки (title)", name: title, hint: "Показується у вкладці браузера і в результатах Google.", widget: object, fields: [
                   { label: "Українською", name: ua, widget: string },
                   { label: "English", name: en, widget: string }
                 ] }
-              - { label: "Опис сторінки", name: description, widget: object, fields: [
+              - { label: "Опис сторінки (description)", name: description, hint: "Короткий текст під заголовком у результатах Google.", widget: object, fields: [
                   { label: "Українською", name: ua, widget: text },
                   { label: "English", name: en, widget: text }
                 ] }
+              - { label: "Зображення для соцмереж (og:image)", name: ogImage, widget: image, required: false, hint: "Показується при розшарюванні посилання в Facebook/Telegram/Viber. Залиште порожнім — автоматично використається фото Аліни з блоку Hero." }
+              - { label: "Зображення для Twitter", name: twitterImage, widget: image, required: false, hint: "Залиште порожнім — автоматично використається те саме зображення, що й вище." }
+
+          - label: "Кольори сайту (дизайн)"
+            name: theme
+            widget: object
+            hint: "Змінюйте обережно — колір відразу впливає на весь сайт. Значення підбираються через графічний вибір кольору."
+            fields:
+              - { label: "Темно-зелений фон (шапка, hero, картки напрямків)", name: bgDark, widget: color }
+              - { label: "Темно-зелений фон 2 (трохи світліший, смуга довіри)", name: bgDark2, widget: color }
+              - { label: "Темно-зелений фон 3 (додатковий відтінок для градієнтів)", name: bgDark3, widget: color }
+              - { label: "Помаранчевий (основні кнопки, акценти, іконка кроків)", name: orange, widget: color }
+              - { label: "Помаранчевий при наведенні (hover)", name: orangeHover, widget: color }
+              - { label: "М'ятний (акценти, активна мова, зірочки в темних блоках)", name: mint, widget: color }
+              - { label: "М'ятний світлий (фон іконок, кружечків)", name: mintSoft, widget: color }
+              - { label: "Кремовий (фон світлих секцій)", name: cream, widget: color }
+              - { label: "Кремовий 2 (фон секцій «Ціни»/«Відгуки»)", name: cream2, widget: color }
+              - { label: "Темний текст (основний текст на світлому фоні)", name: textDark, widget: color }
+              - { label: "Приглушений темний текст (підписи, другорядний текст)", name: textMutedDark, widget: color }
+              - { label: "Світлий текст (текст на темному фоні)", name: textLight, widget: color }
+              - { label: "Приглушений світлий текст (підписи на темному фоні)", name: textMutedLight, widget: color }
+              - { label: "Колір тонких рамок на світлому фоні", name: borderSoft, widget: color }
 
           - label: "Навігація"
             name: nav
@@ -273,10 +295,3 @@ collections:
               - { label: "Заголовок «Контакти»", name: contactsTitle, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Копірайт", name: copy, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
               - { label: "Підпис", name: tag, widget: object, fields: [{ label: UA, name: ua, widget: string }, { label: EN, name: en, widget: string }] }
-
-          - label: "SEO зображення (необов'язково)"
-            name: seo
-            widget: object
-            fields:
-              - { label: "Зображення для соцмереж (og:image)", name: ogImage, widget: image, required: false, hint: "Залиште порожнім — автоматично використається фото Аліни з блоку Hero." }
-              - { label: "Зображення для Twitter", name: twitterImage, widget: image, required: false, hint: "Залиште порожнім — автоматично використається те саме фото, що й вище." }

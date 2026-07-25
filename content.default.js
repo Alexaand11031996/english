@@ -6,12 +6,30 @@ var DEFAULT_CONTENT = {
     phone: "+380 63 123 45 67",
     email: "alina.english@example.com"
   },
-  meta: {
+  seo: {
     title: { ua: "Alina English — англійська з викладачем міжнародного рівня", en: "Alina English — English lessons with an internationally certified teacher" },
     description: {
       ua: "Індивідуальні онлайн-уроки англійської з викладачем з 12+ роками досвіду, сертифікатом Oxford і 500+ задоволеними учнями. Підготовка до IELTS, розмовна та ділова англійська.",
       en: "One-on-one online English lessons with a teacher who has 12+ years of experience, an Oxford certificate and 500+ happy students. IELTS prep, conversational and business English."
-    }
+    },
+    ogImage: "",
+    twitterImage: ""
+  },
+  theme: {
+    bgDark: "#122016",
+    bgDark2: "#1A2E20",
+    bgDark3: "#20402E",
+    orange: "#E8622C",
+    orangeHover: "#D1541F",
+    mint: "#C9E4B8",
+    mintSoft: "#E4F1DA",
+    cream: "#F8F5EC",
+    cream2: "#EFEADB",
+    textDark: "#152219",
+    textMutedDark: "#4F5F53",
+    textLight: "#F4F1E8",
+    textMutedLight: "#9FB6A4",
+    borderSoft: "#E3DCC9"
   },
   nav: {
     teach: { ua: "Напрямки", en: "Programs" },
@@ -220,10 +238,6 @@ var DEFAULT_CONTENT = {
     contactsTitle: { ua: "Контакти", en: "Contacts" },
     copy: { ua: "© 2026 Alina English. Усі права захищені.", en: "© 2026 Alina English. All rights reserved." },
     tag: { ua: "Зроблено з любов'ю до англійської мови", en: "Made with love for the English language" }
-  },
-  seo: {
-    ogImage: "",
-    twitterImage: ""
   }
 };
 
