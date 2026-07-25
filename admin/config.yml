@@ -5,8 +5,8 @@ backend:
 media_folder: "images"
 public_folder: "/images"
 
-site_url: "https://alina-english.netlify.app"
-display_url: "https://alina-english.netlify.app"
+site_url: "https://imaginative-fenglisu-cefad4.netlify.app"
+display_url: "https://imaginative-fenglisu-cefad4.netlify.app"
 
 collections:
   - name: "content"
