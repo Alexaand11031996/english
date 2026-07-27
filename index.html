@@ -110,7 +110,19 @@
   .lang-btn.active{background:var(--mint);color:var(--text-dark);}
 
   /* HERO */
-  .hero{background:var(--bg-dark);color:var(--text-light);padding:88px 0 0;position:relative;overflow:hidden;}
+  .hero{background:var(--bg-dark);color:var(--text-light);padding:88px 0 0;position:relative;z-index:0;overflow:hidden;}
+  .hero-photo-bg{
+    position:absolute;inset:0;z-index:-2;
+    background-image:url('/hero-bg.jpg');
+    background-size:cover;background-position:center 35%;
+  }
+  .hero-photo-overlay{
+    position:absolute;inset:0;z-index:-1;
+    background:
+      linear-gradient(175deg, rgba(14,26,18,.90) 0%, rgba(14,26,18,.80) 45%, rgba(14,26,18,.95) 100%),
+      radial-gradient(ellipse 620px 380px at 88% 100%, rgba(232,98,44,.30), transparent 62%);
+  }
+  .hero .container.hero-grid{position:relative;z-index:1;}
   @media (min-width:981px){
     .hero{padding-top:130px;}
   }
@@ -416,6 +428,8 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
+  <div class="hero-photo-bg" aria-hidden="true"></div>
+  <div class="hero-photo-overlay" aria-hidden="true"></div>
   <div class="container hero-grid">
     <div>
       <div class="eyebrow" data-i18n="hero.eyebrow">Викладачка англійської · Онлайн-уроки</div>

@@ -40,7 +40,8 @@ const assetsToCopy = [
   "android-chrome-512x512.png",
   "site.webmanifest",
   "robots.txt",
-  "sitemap.xml"
+  "sitemap.xml",
+  "hero-bg.jpg"
 ];
 
 function readJsonSafe(file, fallback) {
