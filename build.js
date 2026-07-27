@@ -230,6 +230,22 @@ async function build() {
     }
     await processImageList(sharp, heicConvert, content.hero.avatars, 300);
     await processImageList(sharp, heicConvert, content.testimonials.items, 300);
+    if (content.seo.ogImage) {
+      try {
+        content.seo.ogImage = await processImage(sharp, heicConvert, content.seo.ogImage, 1200);
+      } catch (e) {
+        console.warn("[build.js] warning: unexpected error processing seo.ogImage (" + e.message + "), omitting the image");
+        content.seo.ogImage = "";
+      }
+    }
+    if (content.seo.twitterImage) {
+      try {
+        content.seo.twitterImage = await processImage(sharp, heicConvert, content.seo.twitterImage, 1200);
+      } catch (e) {
+        console.warn("[build.js] warning: unexpected error processing seo.twitterImage (" + e.message + "), omitting the image");
+        content.seo.twitterImage = "";
+      }
+    }
   }
 
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
