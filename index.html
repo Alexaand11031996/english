@@ -25,7 +25,10 @@
 <script type="application/ld+json" id="schemaOrgData"><!--SCHEMA_ORG_DATA--></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap">
+<link id="gfontsLink" rel="stylesheet" media="print" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<script src="font-loader.js"></script>
 <style>
   :root{
     --bg-dark:#122016;
@@ -658,10 +661,10 @@
 </div>
 
 <!--TURNSTILE_SCRIPT_START--><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><!--TURNSTILE_SCRIPT_END-->
-<script src="templates.js"></script>
-<script src="content.default.js"></script>
+<script src="templates.js" defer></script>
+<script src="content.default.js" defer></script>
 <script type="application/json" id="site-content-data"><!--SITE_CONTENT_DATA--></script>
-<script src="main.js"></script>
+<script src="main.js" defer></script>
 
 </body>
 </html>

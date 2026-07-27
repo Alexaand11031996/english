@@ -28,6 +28,7 @@ const assetsToCopy = [
   "templates.js",
   "content.default.js",
   "main.js",
+  "font-loader.js",
   "content",
   "admin",
   "privacy.html",
