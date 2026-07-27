@@ -338,8 +338,8 @@
   .footer-bottom a{text-decoration:underline;transition:color .15s;}
   .footer-bottom a:hover{color:var(--mint);}
 
-  .sticky-cta{position:fixed;bottom:18px;right:18px;z-index:200;}
-  .sticky-cta a{width:56px;height:56px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 14px 30px -8px rgba(232,98,44,0.6);}
+  .sticky-cta{position:fixed;bottom:18px;right:18px;z-index:200;display:flex;flex-direction:column;gap:12px;}
+  .sticky-cta a,.sticky-cta button{width:56px;height:56px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 14px 30px -8px rgba(232,98,44,0.6);border:none;padding:0;cursor:pointer;}
 
   @media (max-width:980px){
     .hero-grid,.about-grid,.booking-grid{grid-template-columns:1fr;}
@@ -644,6 +644,9 @@
 </footer>
 
 <div class="sticky-cta">
+  <button type="button" id="scrollTopBtn" aria-label="Нагору">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20l5-5 5 5"/><path d="M7 14l5-5 5 5"/><path d="M7 8l5-5 5 5"/></svg>
+  </button>
   <a id="stickyTelegramLink" href="https://t.me/your_username" target="_blank" rel="noopener" data-i18n-aria="hero.btnOutline" aria-label="Написати в Telegram">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.5 2.9 11.7c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.9.9.9.5 0 .7-.2 1-.5l2.4-2.3 5 3.7c.9.5 1.6.3 1.8-.9l3.3-15.5c.3-1.4-.5-2-1.4-1.7Z"/></svg>
   </a>

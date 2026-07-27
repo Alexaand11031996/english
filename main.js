@@ -177,6 +177,10 @@ document.addEventListener('click', function (e) {
 applyContacts();
 applyLang(currentLang);
 
+document.getElementById('scrollTopBtn').addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 document.getElementById('bookingForm').addEventListener('submit', function (e) {
   e.preventDefault();
   var form = this;
