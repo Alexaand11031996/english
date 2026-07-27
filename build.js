@@ -240,7 +240,7 @@ async function build() {
   html = setAttr(html, "pageDesc", "content", escapeHtml(t(content.seo.description, LANG)));
   html = setAttr(html, "ogTitle", "content", escapeHtml(t(content.seo.title, LANG)));
   html = setAttr(html, "ogDesc", "content", escapeHtml(t(content.seo.description, LANG)));
-  const ogImage = content.seo.ogImage || content.hero.photo || "";
+  const ogImage = content.seo.ogImage || content.hero.photo || "/android-chrome-192x192.png";
   html = setAttr(html, "ogImage", "content", escapeHtml(ogImage));
   const twitterImage = content.seo.twitterImage || ogImage;
   html = setAttr(html, "twitterImage", "content", escapeHtml(twitterImage));

@@ -134,7 +134,16 @@
         { style: { fontFamily: "Inter, system-ui, sans-serif", background: "#F8F5EC", color: "#152219" } },
         h(
           "section",
-          { style: { background: "#122016", color: "#F4F1E8", padding: "40px 32px" } },
+          {
+            style: {
+              backgroundImage: "linear-gradient(175deg, rgba(14,26,18,.90) 0%, rgba(14,26,18,.80) 45%, rgba(14,26,18,.95) 100%), radial-gradient(ellipse 620px 380px at 88% 100%, rgba(232,98,44,.30), transparent 62%), url('/hero-bg.jpg')",
+              backgroundSize: "cover, cover, cover",
+              backgroundPosition: "center, center, center 35%",
+              backgroundRepeat: "no-repeat, no-repeat, no-repeat",
+              color: "#F4F1E8",
+              padding: "40px 32px"
+            }
+          },
           h("div", { style: { color: "#E8622C", fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" } }, t(bi(entry, ["hero", "eyebrow"]), lang)),
           h("h1", { style: { fontFamily: "Georgia, serif", fontSize: "32px", margin: "0 0 14px" } }, renderAccentHtml ? h("span", { dangerouslySetInnerHTML: { __html: renderAccentHtml(t(bi(entry, ["hero", "h1"]), lang)) } }) : t(bi(entry, ["hero", "h1"]), lang)),
           h("p", { style: { color: "#9FB6A4", maxWidth: "480px", marginBottom: "16px" } }, t(bi(entry, ["hero", "lead"]), lang)),
