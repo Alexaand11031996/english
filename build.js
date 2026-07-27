@@ -241,12 +241,14 @@ async function build() {
   html = setAttr(html, "pageDesc", "content", escapeHtml(t(content.seo.description, LANG)));
   html = setAttr(html, "ogTitle", "content", escapeHtml(t(content.seo.title, LANG)));
   html = setAttr(html, "ogDesc", "content", escapeHtml(t(content.seo.description, LANG)));
-  const ogImage = content.seo.ogImage || content.hero.photo || "/android-chrome-192x192.png";
+  const SITE_URL = "https://alina-english.live";
+  const toAbsoluteUrl = (url) => (/^https?:\/\//i.test(url) ? url : SITE_URL + "/" + url.replace(/^\/+/, ""));
+
+  const ogImage = toAbsoluteUrl(content.seo.ogImage || content.hero.photo || "/android-chrome-192x192.png");
   html = setAttr(html, "ogImage", "content", escapeHtml(ogImage));
-  const twitterImage = content.seo.twitterImage || ogImage;
+  const twitterImage = content.seo.twitterImage ? toAbsoluteUrl(content.seo.twitterImage) : ogImage;
   html = setAttr(html, "twitterImage", "content", escapeHtml(twitterImage));
 
-  const SITE_URL = "https://alina-english.live";
   const schemaOrg = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -254,11 +256,9 @@ async function build() {
     provider: { "@type": "Person", name: content.site.name },
     areaServed: "Online",
     description: t(content.seo.description, LANG),
-    url: SITE_URL
+    url: SITE_URL,
+    image: ogImage
   };
-  if (ogImage) {
-    schemaOrg.image = /^https?:\/\//i.test(ogImage) ? ogImage : SITE_URL + "/" + ogImage.replace(/^\/+/, "");
-  }
   const schemaJson = JSON.stringify(schemaOrg).replace(/</g, "\\u003c");
   html = setInner(html, "schemaOrgData", "script", schemaJson);
 
